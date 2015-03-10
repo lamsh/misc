@@ -1,0 +1,8 @@
+// (File name: README.adoc)
+// (Author: SENOO, Ken)
+// (Last update: 2015-03-10T22:57+09:00)
+
+= 
+Ken SENOO
+
+Excel VBAでよく使う関数など。
