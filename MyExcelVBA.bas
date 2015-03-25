@@ -101,3 +101,16 @@ Sub ExportAllChart()
         cht.Chart.Export(fpath)
     Next cht
 End Sub
+
+
+'' 現在のシートのグラフのデータを置換
+Sub ReplaceSeriesData(before As String, after as String)
+    Dim cht As ChartObject
+    Dim ser As Series
+
+    For Each cht In ActiveSheet.ChartObjects
+        For Each ser In cht.Chart.SeriesCollection
+            ser.Formula = Replace(ser.Formula, before, after)
+        Next
+    Next
+End Sub
