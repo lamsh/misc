@@ -1,0 +1,4 @@
+= MYSCRIPT
+Ken SENOO
+
+雑多なスクリプトなどを保管しておく。
