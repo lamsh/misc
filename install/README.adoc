@@ -1,0 +1,26 @@
+// \file README.adoc
+// \author SENOO, Ken
+
+= Local installation
+Ken SENOO
+
+stow を使ったローカルインストールスクリプトをまとめる。
+
+このリポジトリのインストールスクリプトを使えば、どのUnix環境でもローカルでパッケージをインストールできることを目標とする。
+
+install.body.sh の LOCAL 環境変数でインストール先を指定しておき、そこにインストールする。
+LOCALには例えば以下のような値を想定する。
+
+LOCAL=${HOME}/local
+
+
+== Policy
+
+* パッケージ名，バージョン番号，解凍コマンドやダウンロードURLなどをローカル変数に与えて，共通のインストール部のスクリプトを実行する。
+
+== Dpendency
+
+* gcc
+* make
+* wget or curl -> どちらかが標準で入っている？
+* tar -> tarかbsdtarが標準で入っている？またはcpio，bsdcpio，paxとかで代用がききそう？
