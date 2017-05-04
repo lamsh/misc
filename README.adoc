@@ -1,4 +1,5 @@
-= MYSCRIPT
+## Misc
 Ken SENOO
-
 雑多なスクリプトなどを保管しておく。
+
+VBA: Excel VBAでよく使う関数など。
