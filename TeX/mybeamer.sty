@@ -1,0 +1,262 @@
+%%% For Beamer [121231]
+%% documentclass[dvipdfmx,compress,8pt]{beamer}
+% xcolor=svgnames or dvipsnames
+
+
+
+
+\usetheme{Berlin}
+% AnnArbor, Antibes, xBergen, Berkeley, oBerlin, Boadilla, boxes, CambridgeUS, Copenhagen, Darmstadt, default, Dresden, Frankfurt, Goettingen, Hannover, Ilmenau, JuanLesPins, Luebeck, Madrid, Malmoe, Marburg, Montpellier, PaloAlto, Pittsburgh, Rochester, Singapore, Szeged, Warsaw
+
+
+%% Page number
+% footline, sidebar left
+% \addtobeamertemplate{sidebar left}{}{\footnotesize\insertpagenumber/\inserttotalframenumber}
+
+ \setbeamertemplate{footline}[page number]
+  \setbeamerfont{footline}{size=\small,series=\bfseries}
+
+  % \setbeamertemplate{headline}{}
+
+  %%% Font [130102]
+  \renewcommand{\kanjifamilydefault}{\gtdefault} % 日本語をゴシック
+  \usefonttheme{professionalfonts} % 数式のフォントをRomanにする
+  \setbeamerfont{footnote}{size=\tiny} % footnote
+
+
+  %%% Figures and Tables [130116]
+  \setbeamertemplate{caption}[numbered]
+  \setbeamerfont{caption}{size=\tiny}
+
+
+  %% Marginsize [121231]
+  \setbeamersize{
+	   text margin left=0.75 zw,  % left margin
+		    text margin right=0.75 zw % , % right margin
+  }
+\addtobeamertemplate{frametitle}{}{\vspace{-1ex}}
+
+
+%% Navigation bar
+% \useoutertheme[subsection=false]{miniframes}
+% \useoutertheme[right,height=2zw]{sidebar}% [130221]
+
+
+%% Other
+\setbeamertemplate{navigation symbols}{}%ナビゲーションシンボルを非表示
+\def\newblock{} % bibtexのエラー防止
+\setbeamertemplate{frametitle continuation}{\insertcontinuationcount} % allowframebreaksオプションでページをまたぐときに付ける数字をアラビア数字に指定
+
+
+%%% Color
+%% Title color
+% \setbeamercolor{title}{bg=myblue}
+
+%% Box color
+% \setbeamercolor{block title}{bg=myblue}
+% \setbeamercolor{block body}{bg=myblue}
+
+% \setbeamercolor{block body title}{bg=mygreen}
+% \setbeamercolor{block body example}{bg=mygreen}
+
+% \setbeamercolor{block title alerted}{bg=myyellow}
+% \setbeamercolor{block body alerted}{bg=myred}
+
+%% Text color
+% \setbeamercolor{alerted text}{fg=red}% 130221
+
+
+\if0
+\setbeamertemplate{navigation symbols}{}%ナビゲーションシンボルを非表示
+% \setbeamertemplate{footline}[frame number]% ページ番号の表示
+% \setbeamertemplate{footline}[page number]
+% \usetheme{Berkeley}
+% \usetheme{Warsaw}
+% \usetheme{Annarbor}
+
+%%% Inner Themes
+\useinnertheme{default}%default, circles, rectangles, rounded-shadow, inmargin
+
+%%% Outer Themes
+%\useoutertheme[options]{theme}default, infolines, miniframes, smoothbars, sidebar, split, shadow, tree, smoothtree
+%\useoutertheme[subsection=false]{smoothbars}
+\useoutertheme[subsection=false]{miniframes}
+%\useoutertheme{default}
+
+% \useoutertheme[right,height=2zw]{sidebar}% [130221]
+%% left, right: サイドバーの位置。標準はleft。
+%% width, height: 高さと幅を指定。標準はフレームタイトルの2.5 base line高さ 
+%% hideothersubsections/hideallsubsections: 目次で今の節を除き/全 小節を抑制
+%% 背景の色 サイドバー: sidebar、フレームタイトル: frametitle、角: logo
+%% 目次の色（subsectionも同様）: section in sidebar、section in sidebar current
+
+
+%%%% Color
+%%% Default and Special-Purpose Color Themes
+% \usecolortheme{default}
+% [option]{structure}
+%% rgb:0-1
+%% RGB: 0-255
+%% cmyk, cmy: 0-1
+%% hsb: 0-1
+%% named
+
+% sidebartab: サイドバーの現在のエントリを強調
+%% Complete Color Themes
+\usecolortheme{wolverine}%
+% albatross[overlystylish]: dark: beetle: white brack, crane: yellow,
+% dove: gray, fly: gray=beetle, monarca: ?seagull: gray=dove, 
+% wolverine: yellow, beaver: red, spruce: green
+
+%Inner Color Themes
+\usecolortheme{rose}%lily, orchid, rose
+%Outer Color Themes
+%\usecolortheme{dolphin}%whale, seahorse, dolphin
+
+% Logo template color font [130222]
+%\setbeamertemplate{logo}{\includegraphics[height=5zw]{C:/Users/Senoo/SkyDrive/document/laboratory/name_card/2th_121209/kyoto_emblem.eps}}
+
+%% frame title
+% \setbeamerfont{frametitle}{size=\large, series=\bfseries}
+% \setbeamercolor{frametitle}{fg=white, bg=blue}
+
+%% headline [130101]
+\setbeamertemplate{headline}[miniframes theme]
+% default, infolines theme, miniframes theme, sidebar theme, smoothtree theme, smoothbars theme, tree, split theme, text line-{}
+
+%% footline [130101]
+%\setbeamertemplate{footline}[page number]
+%\setbeamerfont{footline}{size=\small,series=\bfseries}
+%\setbeamercolor{footline}{fg=black,bg=black}
+% default, infolines theme, miniframes theme, page number, frame number, split, text line{}
+
+
+%%% Navigation bar [130206]
+%% \setbeamertemplate{mini frames][option]
+% default: small circle
+% box: small tectangle
+% tick: small vertical bar
+
+%% Beamer-Tempalte/-color/-font mini frame
+
+
+%%% Background [130206]
+%% beamer-template/-color/-font background canvas
+% default: normal textの背景を受け継ぐ。
+% [vertical shadeing][<color>]: 色付き背景を設定。
+% top=color: ページ頂点の色を設定。標準で、palette primaryの前掲の25 %をしよう
+% bottom=color: ページの底辺の色を設定。normal textの背景をしよう。
+% middle=color: ページ中部の色を設定。
+% midpoint=factor: ページの点で使われる色を設定。0はページ下部、1は上部。標準は0.5
+
+%% beamer-template/-color/-font background
+% [default]: 空。
+% [grid][grid option]: 背景に格子を設定。
+% step=格子幅。標準は0.5 cm
+% color=色。格子線の色を設定。標準は10 %の前景
+
+%Marginsize [121231]
+\setbeamersize{
+ text margin left=0.75 zw,	%left margin
+ text margin right=0.75 zw%,	%right margin
+% sidebar width left=	%左サイドバー幅を設定。影以前に設定する
+% sidebar width right=	%右サイドバー幅を設定
+% description width=	%記述環境のデフォルトラベル幅を設定。12.1節参照
+% description width of=	%記述環境のデフォルト本文幅を設定。12.1節参照
+% mini frame size=	%ナビゲーションのミニフレーム幅を設定
+% mini frame offset=	%ナビゲーションバーミニフレーム垂直オフセットを設定
+}
+
+%% block
+\setbeamertemplate{blocks}[rounded]%default
+% [rounded][shadow=true]丸くして影を付ける。shadowはオプション
+
+
+%%% Figures and Tables [130116]
+\setbeamertemplate{caption}[numbered]
+\setbeamerfont{caption}{size=\tiny}
+% default: 番号は付かない。
+% numbered: 番号が付く。
+% caption name own line: own lineに自分で決めた名前を置ける?
+%% Inside Templates Insert
+%\ insertcaption: 現在のキャプション文字を挿入
+%\ insertcaptionname: 現在のキャプション名を挿入
+%\ insertcaptionnumber: 現在の図表番号を挿入
+%% beamer-color/-font caption name: キャプション名を設定。
+
+
+%%%% Color [130112]
+%%% Using Beamer's color
+%% \usebeamercolor*[fg=,bg=]{beamer-color name}
+% fgかbgに指定した分類の色を使用。*を付けるとリセット。
+
+%%% Setting Beamer's color
+%% \setbeamercolor*{beamer-color name}{option}
+% beamer-color name ex: normal text, alerted text
+% fg: 前景の指定
+% bg: 背景の指定
+% parent=: 指定した親の色を継承
+% :use=: 別のbeamer-colorの色を設定?
+\setbeamercolor{alerted text}{fg=red}% 130221
+
+%%% Mathematical text 背景bgは現在無視される
+\setbeamercolor{math text}{fg=}
+% math text: math text inlinedとmath text displayedとnormal text in math textの親
+% math text inlined: 行内数式
+% math text displayed: 別行立て数式
+% normal text in math text: 数式内で\textコマンドで書かれる通常文字を設定
+
+%%% Miscellaneous Colors
+%% color/font:
+% normal text
+% スライドの通常文字。背景はbackground canvasに使われる。他のbeamer-colorの%root。beamer-fontは使えない。
+%example text: exampleブロック内で使われる。
+% titlelike
+% 全タイトルのようなものの基準。structureよりも特徴的。具体的には文書タイトル・サブタイトル、フレームタイトル・サブタイトル。
+% color
+% separation line: 分離線。fgが空なら分離線が描かれない。
+
+
+%%% Font [130102]
+\renewcommand{\kanjifamilydefault}{\gtdefault} %日本語をゴシック
+\usefonttheme{professionalfonts}%数式のフォントをRomanにする
+%% \setbeamerfont{(beamer-font name)}{size=\normalsize,}
+\setbeamerfont{footnote}{size=\tiny} %footnote
+% size: \Tiny or \TINY is OK
+% shape: \itshape, \slshape, \scshape, \upshape
+% series: \bfseries
+% family: \rmfamily, \sffamily
+% parent: 親に設定されたbeamer-fontを継承。複数化。parent={A, B}
+
+\if0 %% TOC
+\AtBeginSection[]{
+  \frame<beamer>{ 
+    \frametitle{Outline}   
+% \tableofcontents[currentsection,currentsubsection] 
+\tableofcontents[currentsection] 
+  }
+}
+\fi
+
+%%%% Frame %%%%
+%%% \begin{frame}{option}{frame title} \end{frame}
+%% LyXではBeginFrameスタイルの後にTeXモードで[option]を書けばよい。
+% allowbreaks=fraction: 自動的にフレームを改行。fractionは改行するページの残りの割合。=以降は省略可能。その場合0.95が設定。
+
+%% Beamer-Template/-Color/-Font: frametitle continuation [130404] 
+%% [default], [roman]: ローマ数字を追記
+%% [from secont][text]: 第2ページから挿入するtextを設定。[text]を省略すると(cont.)が挿入される。
+%%% 便利なコマンド
+%%% \insertcontinuationcount: アラビア数字
+%%% \insertcontinuationcountroman: 大文字のローマ数字を挿入
+%%% \insertcontinuationtext: (cont.)を挿入
+\setbeamertemplate{frametitle continuation}{\insertcontinuationcount} % allowframebreaksオプションでページをまたぐときに付ける数字をアラビア数字に指定
+
+
+
+
+\def\newblock{}%bibtexのエラー防止
+
+%% Beamerでポスター作成 documentclassにfinalを追加すべき?見出しは付けないこと
+% \usepackage[orientation=portrait,size=a1,scale=1.4,debug]{beamerposter}
+\fi

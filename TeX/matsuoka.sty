@@ -1,0 +1,197 @@
+
+%% 論文表紙（新規追加コマンド）%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% 修士論文用表紙 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{arydshln}
+\def\jtitle#1{\gdef\@jtitle{#1}}
+\def\etitle#1{\gdef\@etitle{#1}}
+\def\jauthor#1{\gdef\@jauthor{#1}}
+\def\eauthor#1{\gdef\@eauthor{#1}}
+
+\def\hyoshi{
+\begin{titlepage}
+\vspace*{0mm}
+\noindent
+\Large
+\textgt{京都大学大学院工学研究科}\\
+\textgt{都市環境工学専攻修士論文}\\
+\textsf{Master's Thesis}\\
+\textsf{Department of Environmental Engineering}\\
+\textsf{Graduate School of Engineering}\\
+\textsf{Kyoto University}
+
+\vspace{15mm}
+
+\noindent
+\begin{tabular}{@{}p{.2\linewidth}@{}p{.8\linewidth}@{}}
+\hline\hline
+論文題目\rule{0mm}{25mm}	& \parbox[b]{\linewidth}{\@jtitle}\\
+\cdashline{2-2}[2pt/1pt]
+Title\rule{0mm}{25mm}		& \parbox[b]{\linewidth}{\@etitle}\\
+\cdashline{2-2}[2pt/1pt]
+著者\rule{0mm}{45mm}		& \@jauthor\\
+\cdashline{2-2}[2pt/1pt]
+Author\rule{0mm}{25mm}		& \@eauthor\\
+\cdashline{2-2}[2pt/1pt]
+\rule{0mm}{15mm}&\\
+\hline\hline
+\end{tabular}
+\begin{flushright}
+\vfill
+\large\@date
+\end{flushright}
+\end{titlepage}
+\let\shuron\relax}
+
+\etitle{Study on Accuracy Improvement of Air Quality Model for the Evaluation of Ancillary Benefits}
+\jtitle{副次的効果の評価のための大気質モデルの精度向上に関する研究}
+\jauthor{妹尾　賢}
+\eauthor{SENOO, Ken}
+\date{平成26年3月~~March 2014}
+
+
+
+
+\usepackage[labelsep = space]{caption} % キャプション書式の設定
+
+
+\hypersetup{colorlinks = false} % ハイパーリンクの色を無効化
+
+%% 柱とノンブルの設定
+\usepackage{fancyhdr}
+\fancyhf{} % clear all header and footer
+\cfoot{}
+\cfoot{--\ \thepage\ --}
+\rfoot{}
+\def\footrulewidth{0pt}
+\def\headrulewidth{0pt}
+
+\fancypagestyle{plain}{\pagestyle{fancy}}
+
+% \bibhang = 0pt % 参考文献のインデントを設定
+\urlstyle{rm} % urlのフォントを設定
+
+\def\linesparpage#1{ %% 1ページあたりの行数の指定
+    \baselineskip=\textheight \divide\baselineskip by #1}
+
+\def\mojiparline#1{ %% 1行あたりの文字数の指定
+    \newcounter{mpl} \setcounter{mpl}{#1}
+    \@tempdima=\linewidth
+    \advance\@tempdima by-\value{mpl}zw
+    \addtocounter{mpl}{-1}
+    \divide\@tempdima by \value{mpl}
+    \advance\kanjiskip by\@tempdima    \advance\parindent by\@tempdima}
+
+\mojiparline{40}	% 1行あたりの文字数の指定
+\linesparpage{40}	% 1ページあたりの行数の指定
+
+%%% 相互参照時の参照形式
+\usepackage{prettyref} % subfigがあっても問題ない [130907]
+ \newrefformat{part}{\ref{#1}}
+ \newrefformat{chap}{\ref{#1}}
+ \newrefformat{sec}{\ref{#1}}
+ \newrefformat{sub}{\ref{#1}}
+ \newrefformat{par}{\ref{#1}}
+ \newrefformat{tab}{\ref{#1}}
+ \newrefformat{fig}{\ref{#1}}
+% \newrefformat{lis}{\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}
+% \newrefformat{enu}{\ref{#1}}
+ \newrefformat{eq}{式(\ref{#1})}
+% \newrefformat{lem}{補題\ref{#1}}
+% \newrefformat{thm}{定理\ref{#1}}
+%
+
+
+%%章の設定
+%チャプターのフォントサイズを普通に変更
+\def\@makechapterhead#1{%
+\vspace{0pt} %ここが見出しの上の空白のパラメータ。2ってとこを好きに変える。
+{\parindent\z@
+\raggedright
+\reset@font\normalsize\bf\textmc%ここでフォントとサイズを指定
+\leavevmode
+\ifnum \c@secnumdepth >\m@ne
+\setlength\@tempdima{\linewidth}%
+\setbox\z@\hbox{\@chapapp\thechapter\@chappos\hskip1em}%%ここで前後のやつを指定?
+\addtolength\@tempdima{-\wd\z@}%
+\unhbox\z@\nobreak
+\vtop{\hsize\@tempdima#1}%
+\else
+#1\relax
+%\fi}\nobreak\vskip1\Cvs} %ここが見出しの下の空白の大きさ1zhでもいいかも
+ \fi}\nobreak\vskip0pt} %ここが見出しの下の空白の大きさ1zhでもいいかも
+
+%*付の章見出しの書式
+\def\@makeschapterhead#1{%
+\vspace{0pt} %ここが見出しの上の空白のパラメータ。2ってとこを好きに変える。
+{\parindent\z@
+\raggedright
+\reset@font\normalsize\bf\textmc%ここでフォントとサイズを指定
+\leavevmode
+\ifnum \c@secnumdepth >\m@ne
+\setlength\@tempdima{\linewidth}%
+\setbox\z@\hbox{}%ここで前後のやつを指定?
+\addtolength\@tempdima{-\wd\z@}%
+\unhbox\z@\nobreak
+\vtop{\hsize\@tempdima#1}%
+\else
+#1\relax
+\fi}\nobreak\vskip1\Cvs} %ここが見出しの下の空白の大きさ1zwでもいいかも
+% \fi}\nobreak\vskip 1em} %ここが見出しの下の空白の大きさ1zwでもいいかも
+%%章の設定終わり
+
+
+%%節以下の書式変更は以下の形式
+% \@sect{NAME}{LEVEL}{INDENT}{BEFORESKIP}{AFTERSKIP}{STYLE}[ARG1]{ARG2} 
+
+%セクションの設定。フォントをサイズ普通の太明朝に，直前に一行の空白変更
+\def\section{\@startsection {section}{1}{\z@}{1\Cvs}{1sp}{\raggedright\normalsize\bf\textrm}}
+%サブセクションの設定。フォントをサイズ普通の太明朝に変更，前後の空行除去
+\def\subsection{\@startsection {subsection}{2}{0em}{0pt}{1sp}{\raggedright\normalsize\bf\textrm}}
+%サブサブセクションの設定。%フォントをサイズ普通の太明朝に変更，前後の空行除去
+\def\subsubsection{\@startsection {subsubsection}{2}{0em}{0pt}{1sp}{\raggedright\normalsize\textrm}}
+%subsubsectionを(1)に変更121224
+\renewcommand{\thesubsubsection}{(\arabic{subsubsection})}
+% paragraphを(a)に変更
+\renewcommand{\theparagraph}{\alph{paragraph})}
+
+%% setting of toc style
+\usepackage[subfigure,titles]{tocloft} % [131022]
+
+    \setlength{\cftsecindent}{1.5em}
+    \setlength{\cftsubsecindent}{2.25em} % 2.25 *2, ex = 0.42 em (arial) 0.375 (times)
+    \setlength{\cftsubsubsecindent}{3em} % 3
+    \setlength{\cftparaindent}{3.75em} % 3.75
+    \setlength{\cftsubparaindent}{4.5em} % 4.5
+    %\setlength{\cftchapindent}{1.5em}
+
+    \setlength{\cftchapnumwidth}{4em}
+    \setlength{\cftsecnumwidth}{2.5em}
+    \setlength{\cftsubsecnumwidth}{3.25em} % 3.25
+    \setlength{\cftsubsubsecnumwidth}{4em} % 4
+    \setlength{\cftparanumwidth}{4.75em} % 4.75
+    \setlength{\cftsubparanumwidth}{5.5em} %5.5
+    %\def\cftchappresnum{第}
+    %\def\cftchapaftersnum{章}
+     
+    \def\mytocpagefont{\rmfamily}
+
+    \def\cftpartfont\bfseries{\mytocpagefont}
+    \def\cftchapfont{\bfseries\mytocpagefont}
+    \def\cftsecfont{\mytocpagefont}
+    \def\cftsubsecfont{\mytocpagefont}
+    \def\cftsubsubsecfont{\mytocpagefont}
+    \def\cftparafont{\mytocpagefont}
+    \def\cftsubparafont{\mytocpagefont}
+
+    \def\cftpartpagefont{\bfseries\mytocpagefont}
+    \def\cftchappagefont{\bfseries\mytocpagefont}
+    \def\cftsecpagefont{\mytocpagefont}
+    \def\cftsubsecpagefont{\mytocpagefont}
+    \def\cftsubsubsecpagefont{\mytocpagefont}
+    \def\cftparapagefont{\mytocpagefont}
+    \def\cftsubparapagefont{\mytocpagefont}
+
+    \def\cftfigpagefont{\mytocpagefont}
+    \def\cftsubfigpagefont{\mytocpagefont}
+    \def\cfttabpagefont{\mytocpagefont}
+    \def\cftsubtabpagefont{\mytocpagefont}

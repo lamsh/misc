@@ -1,0 +1,305 @@
+  %%% 目次の見出しの書式設定 Beamerはsubsubsectionないので必ずコメントアウト
+  % \renewcommand{\l@sectionなど}{\@dottedtocline{レベル}{字下げ}{ラベル幅}}
+  %\renewcommand{\l@chapter}{\@dottedtocline{0}{0zw}{9ex}}
+  
+  %%% Setting of part in toc
+  %\def\l@part#1#2{%
+  %  \ifnum \c@tocdepth >-2\relax
+  %    \addvspace{1em}%
+  %    \begingroup
+  %    \parindent\z@\rightskip\@pnumwidth
+  %    \parfillskip-\@pnumwidth
+  %    {\leavevmode\bfseries
+  %     \setlength\@lnumwidth{4em}%
+  %     #1\hfil\nobreak
+  %     \hbox to\@pnumwidth{\hss#2}}\par
+  %    \nobreak
+  %    \global\@nobreaktrue
+  %    \everypar{\global\@nobreakfalse\everypar{}}%
+  %     \endgroup
+  %  \fi}
+  %
+  %%% Setting of chapter in toc
+  %\def\l@chapter#1#2{%
+  %  \ifnum \c@tocdepth >\m@ne
+  %    \addpenalty{-\@highpenalty}%
+  %    \addvspace{1em}% 上の余白
+  %    \begingroup
+  %      \parindent\z@ \rightskip\@pnumwidth \parfillskip-\rightskip
+  %      \leavevmode\sffamily\bfseries
+  %      \setlength\@lnumwidth{4em}% ラベルの幅
+  %      \advance\leftskip\@lnumwidth \hskip-\leftskip
+  %      #1\nobreak\hfil\nobreak\hbox to\@pnumwidth{\hss#2}\par
+  %      \penalty\@highpenalty
+  %    \endgroup
+  %  \fi}
+  %
+  %%% Setting of section in toc chapterのラベル幅と合わせるとスッキリする
+  %\renewcommand{\l@section}{\sffamily\@dottedtocline{1}{1.5em}{2.5em}}
+  %%\renewcommand{\l@subsection}{\@dottedtocline{2}{2.35em}{3.35em}}
+  %\renewcommand{\l@subsection}{\@dottedtocline{2}{2.34em}{3.35em}}
+  %\renewcommand{\l@subsubsection}{\@dottedtocline{3}{3.2em}{4.2em}}
+  %\renewcommand{\l@paragraph}{\@dottedtocline{4}{4.05em}{5.05em}}
+  
+  \usepackage[subfigure,titles]{tocloft} % [131022]
+    \setlength{\cftsecindent}{1.5em}
+    \setlength{\cftsubsecindent}{2.34em} % 2.25 *2, ex = 0.42 em (arial) 0.375 (times)
+    \setlength{\cftsubsubsecindent}{3.18em} % 3
+    \setlength{\cftparaindent}{4.02em} % 3.75
+    \setlength{\cftsubparaindent}{4.86em} % 4.5
+    %\setlength{\cftchapindent}{1.5em}
+   
+    \ifx \undefined\cftchapnumwidth \newlength{\cftchapnumwidth}  \else \fi
+    \setlength{\cftchapnumwidth}{4em}
+    \setlength{\cftsecnumwidth}{2.5em}
+    \setlength{\cftsubsecnumwidth}{3.34em} % 3.25
+    \setlength{\cftsubsubsecnumwidth}{4.18em} % 4
+    \setlength{\cftparanumwidth}{5.02em} % 4.75
+    \setlength{\cftsubparanumwidth}{5.86em} %5.5
+    %\def\cftchappresnum{第}
+    %\def\cftchapaftersnum{章}
+     
+    %\def\mytocpagefont{\sffamily}
+    \def\mytocpagefont{\sffamily}
+  
+    \def\cftpartfont\bfseries{\mytocpagefont}
+    \def\cftchapfont{\bfseries\mytocpagefont}
+    \def\cftsecfont{\mytocpagefont}
+    \def\cftsubsecfont{\mytocpagefont}
+    \def\cftsubsubsecfont{\mytocpagefont}
+    \def\cftparafont{\mytocpagefont}
+    \def\cftsubparafont{\mytocpagefont}
+  
+    \def\cftpartpagefont{\bfseries\mytocpagefont}
+    \def\cftchappagefont{\bfseries\mytocpagefont}
+    \def\cftsecpagefont{\mytocpagefont}
+    \def\cftsubsecpagefont{\mytocpagefont}
+    \def\cftsubsubsecpagefont{\mytocpagefont}
+    \def\cftparapagefont{\mytocpagefont}
+    \def\cftsubparapagefont{\mytocpagefont}
+  
+    \def\cftfigpagefont{\mytocpagefont}
+    \def\cftsubfigpagefont{\mytocpagefont}
+    \def\cfttabpagefont{\mytocpagefont}
+    \def\cftsubtabpagefont{\mytocpagefont}
+  
+  %%% Format of chapter or section or paragraph
+  %% Setting of part
+  \def\@part[#1]#2{%
+    \ifnum \c@secnumdepth >-2\relax
+      \refstepcounter{part}%
+      \addcontentsline{toc}{part}{%
+         \prepartname\thepart\postpartname\hspace{1em}#1}%
+    \else
+      \addcontentsline{toc}{part}{#1}%
+    \fi
+    \markboth{}{}%
+    {\raggedright
+       \Huge\bfseries\sffamily\prepartname\thepart\postpartname\hskip1em
+     \Huge\bfseries#2\par}%
+     \@endpart}
+  
+  \def\@endpart{%\vfil
+     \if@twoside\null\thispagestyle{empty}\fi
+     \if@tempswa\twocolumn\fi}
+  
+  %\def\@endpart{\vfil\newpage
+  %   \if@twoside\null\thispagestyle{empty}\newpage\fi
+  %   \if@tempswa\twocolumn\fi}
+  
+  \def\@spart#1{{%
+    \raggedright
+    \interlinepenalty\@M\reset@font
+    \Huge\bfseries#1\par}%
+    \@endpart}
+  
+  %% Setting of chapter
+  \def\@makechapterhead#1{%
+  \vspace{0pt} % 見出しの上の空白
+  {\parindent\z@
+  \raggedright
+  \reset@font\huge\bfseries\sffamily % フォントとサイズを指定
+  \leavevmode
+  \ifnum \c@secnumdepth >\m@ne
+  \setlength\@tempdima{\linewidth}%
+  \hbox{\@chapapp\thechapter\@chappos\hskip1em} % ここで前後の文字を指定
+  %\setbox\z@\hbox{\@chapapp\thechapter\@chappos\hskip1zw} % ここで前後の文字を指定
+  \addtolength\@tempdima{-\wd\z@}%
+  \unhbox\z@\nobreak
+  \vtop{\hsize\@tempdima#1}%
+  \else#1\relax
+  \fi}\nobreak\vskip1em} % 見出しの下の空白
+  
+  % *付の小見出しの書式
+  %\if0
+   %% Setting of chapter
+  \def\@makeschapterhead#1{%
+  \vspace*{0pt} % 見出しの上の空白
+  % \raggedright
+  \noindent {\huge\bf\textsf #1}% フォントとサイズを指定
+   \nobreak\vskip1em} % 見出しの下の空白
+  %\fi
+  
+  
+  \if0
+    %*付の章見出しの書式
+    \def\@makeschapterhead#1{%
+    \vspace{0pt} % 見出しの上の空白
+    {\parindent\z@
+    \raggedright
+    \reset@font\huge\bf\textsf % フォントとサイズを指定
+    \leavevmode
+    \ifnum \c@secnumdepth >\m@ne
+    \setlength\@tempdima{\linewidth}%
+    % \hbox{-1zw} % 前後の文字を指定
+    \hspace{-1ex} % 前後の文字を指定
+    %\setbox\z@\hbox{} % 前後の文字を指定
+    \addtolength\@tempdima{-\wd\z@}%
+    \unhbox\z@\nobreak
+    \vtop{\hsize\@tempdima#1}%
+    \else#1\relax
+     \fi}\nobreak\vskip 1em} % 見出しの下の空白
+  \fi
+  
+  
+  %% 節の設定
+  % \def\section{\@startsection {section, subsection, subsubsectionのどれか}{レベル}{見出しの字下げ}{見出しの前の行の空白}{見出しの後の行の空白}{フォントの書式}}
+  
+  % セクションの設定。フォントを\Largeの太明朝に，直前に一行の空白変更
+  %\def\section{\@startsection {section}{1}{\z@}{1em}{1sp}{\raggedright\LARGE\bf\textmc}}
+  \def\section{\@startsection {section}{1}{\z@}{1em}{1sp}{\raggedright\LARGE\bfseries\textsf}}
+  % サブセクションの設定。フォントを\normalsizeの太明朝に変更，後の空行除去
+  \def\subsection{\@startsection {subsection}{2}{0em}{1em}{1sp}{\raggedright\Large\bf\textsf}}
+  % サブサブセクションの設定。%フォント\norrmalsizeの太明朝に変更，前後の空行除去
+  \def\subsubsection{\@startsection {subsubsection}{3}{0em}{1em}{1sp}{\raggedright\large\textsf}}
+  
+  % subsubsectionを(1)に変更121224
+  % \renewcommand{\thesubsubsection}{(\arabic{subsubsection})}
+  %% 節の設定終わり
+  
+  % 段落の設定 [130328]
+  \def\paragraph{\@startsection {paragraph}{4}{0em}{1em}{0em}{\raggedright\normalsize\textsf}}
+  
+  
+  %%% ページ番号の書式の設定 [130525]
+  %% ページ番号の書式の変更 http://oku.edu.mie-u.ac.jp/~okumura/texfaq/qa/5179.html
+  \def\ps@myplain{\let\@mkboth\@gobbletwo% 新しいページスタイル
+    \let\ps@jpl@in\ps@plain
+    \let\@oddhead\@empty
+    \def\@oddfoot{\reset@font\hfil-- \thepage\ --\hfil}%
+    \let\@evenhead\@empty
+    \let\@evenfoot\@oddfoot}
+  %\pagestyle{myplain} % ページ番号を-1-という形式に変更
+  
+  %% 目次ではローマ数字になるように\tableofcontentsを再定義
+  \let\oldtoc\tableofcontents
+  \def\tableofcontents{
+  %\newpage
+  \cfoot{--\ \thepage\ --}
+  \pagenumbering{roman}%%
+  \thispagestyle{myplain}
+  %\thispagestyle{empty}
+  \oldtoc%%			% 目次を生成
+  \newpage%%
+  \pagenumbering{arabic}%%
+  \cfoot{--\ \thepage/{\hypersetup{linkcolor = black}\pageref{LastPage}}\ --} \rfoot{\todaye\hspace{1em}\@author}
+  }
+  
+  %% 章の開始ページでは別のページスタイルが使われるので\chapterを再定義
+  \def\chapter{%
+   \cleardoublepage
+   %\thispagestyle{myplain}
+   \thispagestyle{plain}
+   \global\@topnum\z@
+   \@afterindenttrue \secdef\@chapter\@schapter}
+  
+  %% custom title only jreport or jsbook [130805]
+  \makeatletter
+  \@ifclassloaded{ujreport}{
+    \def\maketitle{
+      \newpage
+        \vspace*{\stretch{0.5}}
+      \rule{\linewidth}{1mm}
+      \begin{flushright}
+      \let\footnote\thanks
+  %    \HUGE not available 
+      \Huge \bfseries \textsf \@title
+      \end{flushright}
+  
+      \rule{\linewidth}{1mm}
+      \vspace*{\stretch{1}}
+      \begin{flushright}
+      \LARGE \@author \\
+        \vspace*{\stretch{1}}
+      \Large \@date \\
+        \vspace*{\stretch{1}}
+      \large 京都大学大学院 工学研究科 都市環境工学専攻\\
+        大気・熱環境工学分野\\
+        Email: \texttt{senoo.ken.28c@st.kyoto-u.ac.jp}
+      \end{flushright}
+      \thispagestyle{empty}
+      \newpage
+    }\makeatother}{}
+  
+  \makeatletter
+  \@ifclassloaded{jsbook}{
+    \def\maketitle{
+      \newpage
+        \vspace*{\stretch{0.5}}
+      \rule{\linewidth}{1mm}
+      \begin{flushright}
+      \let\footnote\thanks
+      {\HUGE \bfseries \textsf\@title}
+      \end{flushright}
+  
+      \rule{\linewidth}{1mm}
+      \vspace*{\stretch{1}}
+      \begin{flushright}
+      \LARGE \@author \\
+        \vspace*{\stretch{1}}
+      \Large \@date \\
+        \vspace*{\stretch{1}}
+      \large 京都大学大学院 工学研究科 都市環境工学専攻\\
+        大気・熱環境工学分野\\
+        Email: \texttt{senoo.ken.28c@st.kyoto-u.ac.jp}
+      \end{flushright}
+      \thispagestyle{empty}
+      \newpage
+    }\makeatother}{}
+  
+  %% pdf-bookmark for title [130805]
+  %\let\mytitle\maketitle
+  %\renewcommand\maketitle{
+  %	 \pdfbookmark[1]{タイトル} {}\mytitle}
+  
+  %% a pdf-bookmark for the TOC is added [130224]
+  \let\myTOC\tableofcontents
+  \renewcommand\tableofcontents{%
+    \pdfbookmark[1]{\contentsname}{}\myTOC}
+  
+  %%% 柱の設定 [130825]
+  %% 柱に記述する章と節にハイパーリンクを設定
+  \makeatletter
+  \@ifclassloaded{jsbook}{\addtolength{\footskip}{1cm}}{}
+  \@ifclassloaded{jreport}{
+   \renewcommand{\chaptermark}[1]{%
+    \markboth{\protect\hypersetup{linkcolor=black}\protect\hyperlink{\@currentHref}{ 第 \thechapter 章 #1}}{}}
+   \renewcommand{\sectionmark}[1]{%
+    \markright{\protect\hypersetup{linkcolor=black}\protect\hyperlink{\@currentHref}{\thesection \hspace{1ex} #1}}}}{}
+  \@ifclassloaded{jsbook}{
+   \renewcommand{\chaptermark}[1]{%
+    \markboth{\protect\hypersetup{linkcolor=black}\protect\hyperlink{\@currentHref}{ 第 \thechapter 章 #1}}{}}
+   \renewcommand{\sectionmark}[1]{%
+   	 \markright{\protect\hypersetup{linkcolor=black}\protect\hyperlink{\@currentHref}{\thesection \hspace{1ex} #1}}}}{}
+  
+  %% ヘッダーとフッターとその前後の罫線の設定
+  \usepackage{fancyhdr}
+  \usepackage{authoraftertitle} % for header title [130915]
+  \usepackage{lastpage} % for last page number [130921]
+  \lfoot{\MyTitle}
+  \fancyhead[LO, LE]{\leftmark} \fancyhead[RE, RO]{\rightmark}
+  \cfoot{--\ \thepage/{\hypersetup{linkcolor = black}\pageref{LastPage}}\ --} \rfoot{\todaye\hspace{1em}\@author}
+  \def\headrulewidth{0.5pt} \def\footrulewidth{0.5pt}
+  %% \chapter などで使われる plain を再定義
+  \fancypagestyle{plain}{\pagestyle{fancy}}
+  \makeatother

@@ -1,0 +1,2023 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass jsarticle
+\begin_preamble
+% \usepackage{etex}% TikZのためレジスタが多いeplatexを使用 Outputに記述[20131124]
+\usepackage{etoolbox}% \ifdefmacro便利コマンド etex必要[130506]
+
+%%% pdflatex with CJK and font setting 
+% \usepackage[whole]{bxcjkjatype}
+% \hypersetup{unicode}
+% 
+% documentclass: artile or book or report etc.   remove option: dvipdfmx
+% Document->Settings...->Language->Encoding
+%   Language: Japanese (CJK)
+%   Other: Unicode (CJK) (utf8)
+% comment out preamble: pxjahyper, otf, ucs, inputenc, kcatcode
+
+%% Font
+\usepackage{tgtermes,tgheros} % tgcursor TeX Gyre font [20131229]
+\renewcommand{\bfdefault}{bx}
+% serif: TeX Gyre Termes, sans serif: TeX Gyre Heros
+
+% \def\rmdefault{mns} % セリフにTimes New Romanを指定[130224]
+% \def\sfdefault{mal} % サンセリフにarialを指定[130224]
+%\usepackage{zi4} % typewriter -> inconsolata 
+
+\usepackage[deluxe]{otf}% fontにotfを使用 [121113]
+
+\usepackage[noalphabet]{pxchfon} % 20131224
+ \setminchofont{ipaexm.ttf}
+ \setboldminchofont{mogamb002.ttf}
+ \setlightminchofont{AozoraMinchoLight.ttf}
+ \setgothicfont{ipaexg.ttf}
+ \setboldgothicfont{migmix-1p-bold.ttf}
+ \setxboldgothicfont{mplus-1p-heavy.ttf}
+ \setmarugothicfont{MTLmr3m.ttf}
+
+%% \text<series> is exception lt and eb, \<series>series 
+% md: medium, bf: boldface, lt*: light, eb*: extra bold
+% 
+%% \text<style>, \<styele>family
+% rm: roman, sf: san serif, tt: typewriter gt: gothic, mc: mincho, mg*:maru gothic
+% * only otf package with deluxue option.
+%
+%% \text<shape> \<shape>shape
+% up: upright, it: italic, sl: slanted, sc: smallcaps 
+%% \emph: alphabet is italic, kanji is bold
+
+% \usepackage{ucs}
+\usepackage[utf8]{inputenc}
+
+% \usepackage[prefernoncjk]{pxcjkcat} % これを追加
+% \kcatcode`§=15% Latin-1 Supplement(U+0080～) 15:not cjk character
+\kcatcode`Ŕ=15% Latin extended A (U+0100-- )
+%\kcatcode"0180=15% Latin extended B (U+0180-- )
+%\kcatcode"1E00=15% Latin extended supplement (U+1E00-- )
+ \kcatcode`α=15% Greek and Coptic(U+0370～)
+%\kcatcode"1F00=15% Greek Extended(U+1F00～)
+% \kcatcode"0400=15% Cyrillic (U+0400-- )
+% \kcatcode"2100=17% Letterlike Symbols (U+2100-- )
+% \kcatcode"2190=15% Arrows (U+2190-- )
+\kcatcode`“=15% General Punctuation(U+2000～)
+\kcatcode`ü=15
+
+% \usepackage{textalpha} % 数式中でtikzのremember pictureを使うと固まる出るので [131117]
+% \usepackage{alphabeta}
+% \urlstyle{rm}%urlのフォントを指定 [121231]
+
+
+%% breakable _, \, {, }, #, $, &, %, ~, ^ [130902] |, <, > [131019]
+\let\underscore\_  \def\_{\underscore\hspace{0pt}}
+\let\backslash\textbackslash \def\textbackslash{\backslash\hspace{0pt}}
+\let\openbrace\{	\def\{{\openbrace\hspace{0pt}}
+\let\closebrace\}	\def\}{\closebrace\hspace{0pt}}
+\let\mysharp\#	\def\#{\mysharp\hspace{0pt}}
+\let\mydollar\$	\def\${\mydollar\hspace{0pt}}
+\let\myampersand\&	\def\&{\myampersand\hspace{0pt}}
+\let\mypercent\%	\def\%{\mypercent\hspace{0pt}}
+\let\mytilde\textasciitilde        \def\textasciitilde{\mytilde\hspace{0pt}}
+\let\mycircum\textasciicircum \def\textasciicircum{\mycircum\\hspace{0pt}}
+\let\mytextbar\textbar 	\def\textbar{\mytextbar\hspace{0pt}}
+\let\mytextless\textless 	\def\textless{\mytextless\hspace{0pt}}
+\let\mytextgreater\textgreater \def\textgreater{\mytextgreater\hspace{0pt}}
+
+%% Color [130329]
+\usepackage{color}
+\definecolor{myred}{rgb}{1,0.8,0.8}
+\definecolor{mygreen}{rgb}{0.8,1,0.8}
+\definecolor{myblue}{rgb}{0.8,0.8,1}
+\definecolor{myyellow}{rgb}{1,1,0.8}
+\definecolor{myaqua}{rgb}{0.8,1,1}
+\definecolor{mypurple}{rgb}{1,0.8,1}
+\definecolor{mygray}{gray}{0.8}
+
+%% \color{color}: 以降の文字をcolorにする。
+%% \pagecolor{color}: ページカラーの指定
+%% \textcolor{color}{text}, 文字色の指定
+%% \colorbox{color}{text}: 背景色の指定
+%% \fcolorbox{枠の色}{中の色}{text}: 枠と背景の色を指定
+
+% \usepackage[svgnames]{xcolor} % Green等のSVG色名を使う [130701]
+\usepackage{xcolor} % beamerでエラーになるので[svgnames]をコメントアウト
+\usepackage{colortbl} % 色付きの表を実現
+%% rl>{\columncolor{color}}c: ある列に着色。>の前のrlは着色列をその方向にずらす
+%% \rowcolor{color}: 行頭で書くこと, \cellcolor{color}
+%% \rowcolors{n}{odd color}{even color}: n行目から初めてodd colorとeven colorで交互に行を着色。解除するにはセルで\hiderowcolors、再開するには\showrowcolors。
+
+%% ボックスの余白 [130802]
+\fboxsep=0.1em % defalut: 3pt
+% \fboxrule= % box frame width default: 0.4pt
+
+% \arrayrulecolor{structure} % 表の罫線の色
+
+%% 記号関係
+\usepackage{upquote} % ' -> 1 byte character in verb and listing [20131110]
+% \usepackage[strings]{underscore} % embed _ in typewriter [20131230]
+\usepackage{textcomp}%本文でTeXモードで\textmu で立体のμ
+\usepackage{upgreek}%\uphogeで数式でアップライト体のギリシャ文字が使用可能
+%\usepackage{txfonts}%\hogeupで数式でアップライト体のギリシャ文字が使用可能。しかしフォントの設定が変更されるので使用しない方がよい。
+\usepackage{textgreek}%これと上2つの追加日 [130111]
+
+% \usepackage{epsdice}% \epsdice{n}, \epsdice[black]{n}でサイコロ [130209]
+ %\newfont\dice{dice3d}% \dice{n}, \dice{na}でサイコロ [130209]
+
+% \usepackage{plext}% 縦組みクラス用コマンド[130313]
+% tabular使用時にエラーが出るので注意
+% \rensuji[lcr]{数値}: 数値を横に並べる
+% \Kanji{ }: 漢数字にする。\Alphaや\alpha、\Roman、\romanなどと同様
+% enumerate環境の項目ラベルを漢数字にするには次のように設定
+%% \remewcommand{\labelnumi}{\Kanji{enumi}、}
+%% \remewcommand{\theenumi}{\Kanji{enumi}}
+
+%% \bou{}: 傍点を付加。標準は「、」\boutencharの値を\renewcommandで変更可能
+%% \kasen{}: \underlineと同様に下線を引く。但し下線を引いている間は改行されない
+%% \parbox<ytz>{幅}{}: ytzで横縦回転(縦組時のみ可)を指定。幅の指定は必要
+%% \begin{minipage}<ytz>{幅}、\begin{tabular}<ytz>...のように組モードを指定できる。
+
+% \usepackage{okumacro}%以下のマクロを定義
+%\ruby{元}{るび} でるびを振る
+%\kenten{強調} で圏点を振る
+
+
+%\usepackage{emath} %  数学で便利なコマンドを提供 [20130714] 他と干渉するのでアウト [130913]
+%\resettagform % 数式番号をLaTeX標準にする。emathを読み混むと丸付き数字になる
+
+%%% standalone option [20140126]
+% multi=math, border=1
+
+%% standaloneクラスで数式のマルチページのため 
+%\renewcommand\[{\begin{math}}
+%\renewcommand\]{\end{math}}
+
+%% for fix margin on standalone.cls using uplatex+dvipdfmx. [20140126]
+\def\sa@placebox{%
+\newpage
+\global\pdfpagewidth=\wd\sa@box
+\global\pdfpageheight=\ht\sa@box
+\global\paperwidth=\wd\sa@box
+\global\paperheight=\ht\sa@box
+\global\hsize=\wd\sa@box
+\global\vsize=\ht\sa@box
+\global\@colht=\ht\sa@box
+\global\@colroom=\ht\sa@box
+\special{papersize=\the\pdfpagewidth,\the\pdfpageheight}% ←これを追加
+\noindent\usebox\sa@box
+\newpage
+}
+
+%%%% Figure and Table and List and Reference
+%% both
+\usepackage{rotating}% [130502]
+%% sidewaystable, sidewaysfigure環境で横向きに回転
+
+%%% Table
+%% Margin
+ \def\aboverulesep{0pt}  % 罫線の前後の余白 [130824]
+ \def\belowrulesep{0pt}
+% \def\belowbottomsep{0pt} % for booktabs
+ \extrarowheight=0.3em % セル内上部の余白
+ \tabcolsep= 0.3em % 表の横方向(列間)の余白
+
+\usepackage{booktabs}  % フォーマル形式の表(縦線なし) [121112]
+%% longtableでtopruleとmiddleruleがrowcolorsに対応しないので同長のhlineで再定義[20131123]
+% ただし二重線は線同士の余白がないのでくっつく
+  \def\midrule{\noalign{\global\arrayrulewidth0.05em}\hline\noalign{\global\arrayrulewidth 0.4pt}}
+  \def\toprule{\noalign{\global\arrayrulewidth0.08em}\hline\noalign{\global\arrayrulewidth 0.4pt}}
+% \usepackage{slashbox}	% 表内で斜め線[130201]
+% \backslashbox[width]{left}{right}: \, \slashbox[width]{left}{right}: /
+
+\usepackage{dcolumn} % 表の列で特殊な位置合わせ [130824]
+ \newcolumntype{.}{D{.}{.}{-1}} % "."でピリオドで位置合わせ
+ \newcolumntype{M}[1]{>{\centering\hspace{0pt}}m{#1}} % 連結列の幅M{width}
+ \newcolumntype{S}[2]{>{\centering\hspace{0pt}}m{(#1+(2\tabcolsep+\arrayrulewidth)*(1-#2))/#2}} % 連結列にまたがる各セルを等幅にする S{連結セルの幅}{連結したセルの数}
+ \newcolumntype{K}[1]{>{\columncolor{#1}\hspace{0pt}}c} % 列を着色 K{色名}
+
+%\renewcommand{\arraystretch}{1} % 表の罫線と文字との間の行送りの設定
+% \renewcommand{\baselinestretch}{1}\selectfont
+%% 表内の改行の行送りを設定
+%% http://wkouw.web.fc2.com/WATAPEDIA_tex/Word_layout/layout.html
+%\linespread{0.5}
+%¥doublerulesep=10pt% table罫線を複数重ねて表示した場合の、罫線間の間隔を指定します。
+%¥arrayrulewidth=2pt% 罫線の太さを指定します。
+%http://ideas.paunix.org/latex/latex_6_tabular.htm
+
+
+%%% Activate \multicolumn color inheritance [20130412>1123]
+\let\oldmc\multicolumn
+\def\multicolumn#1#2#3{\oldmc{#1}{#2}{\ifodd\rownum\@oddrowcolor\else\@evenrowcolor\fi #3}}
+
+
+\usepackage{longtable}% longtableがないと変数の未定義のためエラーが出る
+%% \twocolumn環境でtableのpagebreakを実現でも\multicolsでは無理 [130423]
+% \let\saved@longtable\longtable
+% \long\def\foo#1\LT@err#2#3#4!!{\def\longtable{#1#4}}
+% \expandafter\foo\longtable!!
+
+% \long\def\foo#1\@outputpage#2\@outputpage#3!!{%
+% \def\LT@output{#1\@opcol#2\@opcol#3}}
+% \expandafter\foo\LT@output!!
+%% なんか無理になったので以下の設定で代用[131028]
+
+
+%%% 多段組でlontableを使うための設定 [131028]
+%% \changecolumns{n}でlongtable可能な段組の変更。ただし改ページを伴う。
+%%% longtable 環境の動作の調整
+\def\longtable{%
+   \par
+   \begingroup
+   \def\@tempa{multicols}%
+   \def\@elt##1{%
+      \def\@tempb{##1}%
+      \ifx\@tempa\@tempb
+         \LT@err{longtable in multicols environment}\@ehc
+      \fi}%
+   \@envirstack
+   \endgroup
+   \begingroup
+   \@ifnextchar[\LT@array{\LT@array[x]}}
+\def\LT@output{%
+   \ifnum\outputpenalty <-\@Mi
+      \ifnum\outputpenalty > -\LT@end@pen
+         \LT@err{floats and marginpars not allowed in a longtable}\@ehc
+      \else
+         \setbox\z@\vbox{\unvbox\@cclv}%
+         \ifdim \ht\LT@lastfoot>\ht\LT@foot
+            \dimen@\pagegoal
+            \advance\dimen@-\ht\LT@lastfoot
+            \ifdim\dimen@<\ht\z@
+               \setbox\@cclv\vbox{\unvbox\z@\copy\LT@foot\vfil}%%% \vss -> \vfil
+               \@makecol
+               \@opcol%%% \@outputpage%%% changed
+               \setbox\z@\vbox{\box\LT@head}%
+            \fi
+         \fi
+         \global\@colroom\@colht
+         \global\vsize\@colht
+         \vbox{%
+            \unvbox\z@
+            \box\ifvoid\LT@lastfoot\LT@foot\else\LT@lastfoot\fi}%
+      \fi
+   \else
+      \setbox\@cclv\vbox{\unvbox\@cclv\copy\LT@foot\vfil}%%% \vss -> \vfil
+      \@makecol
+      \@opcol%%% \@outputpage%%% changed
+      \global\vsize\@colroom
+      \copy\LT@head
+   \fi}
+
+%%% 環境の処理の拡張
+\def\begin#1{%
+   \toks@\expandafter{\expandafter\@elt\expandafter{\@currenvir}}%
+   \@temptokena\expandafter{\@envirstack}%
+   \edef\@envirstack{\the\toks@\the\@temptokena}%
+   \@ifundefined{#1}%
+      {\def\reserved@a{\@latex@error{Environment #1 undefined}\@eha}}%
+      {\def\reserved@a{\def\@currenvir{#1}%
+       \edef\@currenvline{\on@line}%
+       \csname #1\endcsname}}%
+    \@ignorefalse
+    \begingroup\@endpefalse\reserved@a}
+\let\@envirstack\@empty
+%
+%%% LaTeX 自身の 2 段組アルゴリズムをそのまま拡張した多段組
+\newcount\@curr@column
+\def\onecolumn{%
+   \clearpage
+   \global\columnwidth\textwidth
+   \global\hsize\columnwidth
+   \global\linewidth\columnwidth
+   \global\@twocolumnfalse
+   \col@number\@ne
+   \global\@curr@column\z@
+   \@floatplacement}
+\def\changecolumns#1{%
+   \clearpage
+   \col@number#1\relax
+   \count@\col@number \advance\count@\m@ne
+   \global\columnwidth\textwidth
+   \global\advance\columnwidth-\count@\columnsep
+   \global\divide\columnwidth\col@number
+   \global\hsize\columnwidth
+   \global\linewidth\columnwidth
+   \global\@twocolumntrue
+   \global\@firstcolumntrue
+   \global\@curr@column\z@
+   \@ifnextchar[\@topnewpage\@floatplacement}
+\def\twocolumn{\changecolumns{2}}
+\newbox\@outputpage@tempbox
+\def\@outputdblcol{%
+   \if@firstcolumn
+      \global\@firstcolumnfalse
+      \toks@\expandafter{\topmark}%
+      \xdef\@firstcoltopmark{\the\toks@}%
+      \global\let\@setfirstmark\relax
+   \fi
+   \global\advance\@curr@column\@ne
+   \ifnum\@curr@column<\col@number
+      \global\setbox\@leftcolumn\hbox{%
+         \unhbox\@leftcolumn
+         \copy\@outputbox}%
+      \splitmaxdepth\maxdimen
+      \vbadness\maxdimen
+      \setbox\@outputbox\vsplit\@outputbox to\maxdimen
+      \toks@\expandafter{\splitfirstmark}%
+      \edef\@firstmark@in@curr@column{\the\toks@}%
+      \ifx\@firstmark@in@curr@column\@empty\else
+         \ifx\@setfirstmark\relax\else
+            \global\let\@firstmark@in@curr@page\@firstmark@in@curr@column
+            \gdef\@setfirstmark{\let\firstmark\@firstmark@in@curr@page}%
+         \fi
+      \fi
+   \else
+      \global\@firstcolumntrue
+      \global\@curr@column\z@
+      \global\setbox\@leftcolumn\hbox{%
+         \unhbox\@leftcolumn
+         \box\@outputbox}%
+      \global\setbox\@outputpage@tempbox\box\voidb@x
+      \setbox\z@\hbox{%
+         \unhbox\@leftcolumn
+         \@outputpage@reconstructbox}%
+      \setbox\@outputbox\vbox{%
+         \hb@xt@\textwidth{\unhbox\@outputpage@tempbox}}%
+      \@combinedblfloats
+      \@setfirstmark
+      \let\topmark\@firstcoltopmark
+      \@outputpage
+      \begingroup
+      \@dblfloatplacement
+      \@startdblcolumn
+      \@whilesw\if@fcolmade \fi{\@outputpage\@startdblcolumn}%
+      \endgroup
+   \fi}
+\def\@outputpage@reconstructbox{%
+   \setbox\z@\lastbox
+   \ifvoid\z@\else
+      \global\setbox\@outputpage@tempbox\hbox{%
+         \hb@xt@\columnwidth{\box\z@\hss}%
+         \ifvoid\@outputpage@tempbox\else
+            \hfil \vrule\@width\columnseprule \hfil
+         \fi
+         \unhbox\@outputpage@tempbox}%
+      \expandafter\@outputpage@reconstructbox
+   \fi}
+
+%% margin of longtable before/after [130430]longtableを読み込んだ後に書くこと
+\LTpre=3pt
+\LTpost=0em
+
+%% 表番号は、長尺表にキャプションを付けなかったとしても、各長尺表毎に加番されます。このため、あいだにキャプションのない二つの長尺表が挟まっていたならば、表一覧では、たとえば表 2.1 の後に表 2.4 が来ることがあります。これを回避 [130424]
+\let\myEnd\endlongtable
+\renewcommand{\endlongtable}{\myEnd\addtocounter{table}{-1}}
+
+
+%% 全ての表を標準で白黄で行間を通常の0.7にする
+% alternate rowcolors for all tables
+\let\oldtabular\tabular \let\endoldtabular\endtabular
+\renewenvironment{tabular}{\rowcolors{2}{}{yellow!20}
+% \renewcommand{\arraystretch}{0.8} % 表の罫線と文字との間の行送りの設定
+ \renewcommand{\baselinestretch}{0.7}\selectfont
+\oldtabular}{\endoldtabular}
+
+% alternate rowcolors for all long-tables
+\let\oldlongtable\longtable \let\endoldlongtable\endlongtable
+\renewenvironment{longtable}{\rowcolors{2}{}{yellow!20}
+% \renewcommand{\arraystretch}{0.8} % 表の罫線と文字との間の行送りの設定
+ \renewcommand{\baselinestretch}{0.7}\selectfont
+\oldlongtable} {\endoldlongtable}
+%% longtableでは\midruleのある場所ではrowcolorsで色がつかないので注意
+
+% \usepackage{movie15_dvipdfmx} % \includemovie[]{width}{height}{file} [131007]
+
+%%% Program List
+\usepackage{listings}
+\usepackage{jlisting} % これを読み込むとLyX2.1でエラー [131012] %でもよまないと日本語が変になる [20131126]
+\renewcommand{\lstlistingname}{リスト}
+\def\lstlistlistingname{リスト一覧}
+% How to use
+%% \begin{lstlisting}[caption=hoge, label=hoge, （オプション）] 
+%% \end{lstlisting}
+
+%%% Custom language [130924]
+%% CASLII
+\lstdefinelanguage{CASL2}{
+morekeywords={START,END,DS,DC,OUT,RPUSH,RPOP,LD,ST,LAD,%
+ADDA,SUBA,SUBL,AND,OR,XOR,CPA,CPL,SLA,SRA,SLL,SRL,%
+JPL,JMI,JNZ,JZE,JOV,JUMP,PUSH,POP,CALL,RET,SVC,NOP,%
+GR0,GR1,GR2,GR3,GR4,GR5,GR6,GR7},%
+morecomment=[l]{;},%
+morestring=[b]"}
+
+%% C#
+\lstdefinelanguage{CSharp} {
+  morecomment = [l]{//},
+  morecomment = [l]{///},
+  morecomment = [s]{/*}{*/},
+  moredelim=[is][\underbar]{_}{_},
+  morestring=[b]",
+  sensitive = true,
+  morekeywords = {abstract,  event,  new,  struct, var,
+    as,  explicit,  null,  switch,
+    base,  extern,  object,  this,
+    bool,  false,  operator,  throw,
+    break,  finally,  out,  true,
+    byte,  fixed,  override,  try,
+    case,  float,  params,  typeof,
+    catch,  for,  private,  uint,
+    char,  foreach,  protected,  ulong,
+    checked,  goto,  public,  unchecked,
+    class,  if,  readonly,  unsafe,
+    const,  implicit,  ref,  ushort,
+    continue,  in,  return,  using,
+    decimal,  int,  sbyte,  virtual,
+    default,  interface,  sealed,  volatile,
+    delegate,  internal,  short,  void,
+    do,  is,  sizeof,  while,
+    double,  lock,  stackalloc,
+    else,  long,  static,
+    enum,  namespace,  string}}
+
+%% JAVAscript
+\lstdefinelanguage{JAVAscript}{
+comment={[l]{//}},
+commentstyle={\color{purple}\ttfamily},
+identifierstyle={\color{black}},
+keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+keywordstyle={\color{blue}\bfseries},
+morecomment={[s]{/*}{*/}},
+ndkeywords={class, export, boolean, throw, implements, import, this},
+ndkeywordstyle={\color{darkgray}\bfseries},
+sensitive=false,
+stringstyle={\color{red}\ttfamily}}
+
+%% Vim
+\lstdefinelanguage{Vim}{
+ morekeywords={:set},
+ morecomment=[l]{"},
+ morestring=[b]{'}}
+
+
+%% Cross Reference
+\usepackage{refstyle} % refstyleで整形された参照のために使用 [121117]
+ \newref{part}{refcmd={\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}}
+ \newref{chap}{refcmd={\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}}
+ \newref{sec}{refcmd={\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}}
+ \newref{sub}{refcmd={\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}}
+ \newref{par}{refcmd={\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}}
+ \newref{fig}{refcmd={\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}}
+ \newref{subfloat}{refcmd={\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}}
+ \newref{tab}{refcmd={\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}}
+ \newref{lis}{refcmd={\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}}
+ \newref{enu}{refcmd={\ref{#1}}}
+% \newref{fn}{}
+% subfigureが文書にあると小節を参照する際に使う\subrefがおかしくなるので注意
+
+\usepackage{prettyref} % subfigがあっても問題ない [130907]
+ \newrefformat{part}{\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}
+ \newrefformat{chap}{\ref{#1}\nameref{#1}"[p.\pageref{#1}]}
+ \newrefformat{sec}{\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}
+ \newrefformat{sub}{\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}
+ \newrefformat{par}{\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}
+ \newrefformat{tab}{\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}
+ \newrefformat{fig}{\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}
+ \newrefformat{lis}{\ref{#1}“\nameref{#1}”[p.\pageref{#1}]}
+ \newrefformat{enu}{\ref{#1}}
+ \newrefformat{eq}{\ref{#1}}
+ \newrefformat{lem}{補題\ref{#1}}
+ \newrefformat{thm}{定理\ref{#1}}
+% subfloatにnamerefするとキャプションタイトルがSubfigureになるのでprettyrefを使わない
+
+%% increase link area for cross-references and autoname them, [130514]
+\AtBeginDocument{\renewcommand{\ref}[1]{\mbox{\autoref{#1}}}}
+
+ \def\equationautorefname~#1\null{式(#1)\null}
+ \def\figureautorefname~#1\null{図#1\null}
+ \def\subfigureautorefname#1\null{図#1\null}
+ \def\tableautorefname~#1{表#1}
+ \def\subtableautorefname~#1{表#1}
+ \def\lstlistingautorefname~#1{リスト#1}
+
+ \def\partautorefname#1\null{第#1部\null}
+ \def\chapterautorefname#1\null{第#1章\null}
+ \def\sectionautorefname#1\null{#1節}
+ \def\subsectionautorefname~#1\null{#1節}
+ \def\subsubsectionautorefname#1\null{#1節}
+ \def\paragraphautorefname#1\null{#1段落}
+ \def\subparagraphautorefname#1\null{#1段落}
+
+ \def\Itemautorefname#1\null{項目#1\null}
+ \def\Hfootnoteautorefname#1\null{脚注#1\null}
+ \def\theoremautorefname#1\null{定理#1\null}
+ \def\FancyVerbLineautorefname#1\null{#1行\null}
+% \def\pageautorefname#1\null{ページ#1\null}
+  \def\appendixautorefname#1\null{付録#1\null}
+
+\usepackage{footnotebackref} % [20131207]
+
+%% captionを変更 [130102]
+\renewcommand{\figurename}{図}
+\renewcommand{\tablename}{表}
+
+%% 図表同士、図表と本文との間隔の変更
+\setlength{\floatsep}{0em}	% フロート同士の間隔
+\setlength{\intextsep}{0em}	% 本文と[h]指定のフロート間の間隔を設定
+\setlength{\textfloatsep}{0em}	% ページの上[t]/下部[b]のフロートと本文との間隔
+% \dblfloatsep		% 1段幅の部分でのフロート同士の間隔
+% \dbltextfloatsep	% 1段幅部分と1段幅の部分との間の間隔
+
+%% 図表とキャプションの前後の空白
+ \abovecaptionskip 0em % キャプションの前の空白を設定
+ \belowcaptionskip 0em % キャプションの後の空白を設定
+\setlength{\@fpsep}{0em}
+
+%% ページあたりのフロートの最大数の指定
+\setcounter{topnumber}{9}           %ページ上部のフロート最大数 [t]
+\setcounter{bottomnumber}{9}      %ページ下部のフロート最大数 [b]
+\setcounter{totalnumber}{50}          %1ページのフロート最大数
+\setcounter{dbltopnumber}{50}        %2段組の場合の \topnumber
+
+\def\topfraction{1}    %ページ上部をフロートが占められる最大割合 [t]
+\def\dbltopfraction{1}    %2段組の場合の\topfraction
+\def\bottomfraction{1}%ページ下部をフロートが占められる最大割合 [b]
+\def\floatpagefraction{0} %フロートが1ページを占める最小割合 [p]
+\def\dblfloatpagefraction{0}      %2段組の場合の \floatpagefraction
+\def\textfraction{0}        %本文が1ページを占める最小割合
+
+% \usepackage[font=normalsize,skip=0pt,labelsep=space]{caption}%キャプション書式の設定[121219]
+\usepackage{caption}
+\captionsetup[table]{skip=0pt}
+\captionsetup[figure]{skip=0pt,belowskip=0em}
+
+\captionsetup[subfloat]{skip=0pt,farskip=0em}
+\usepackage[format=hang,caption=false,labelformat=simple,subrefformat=subparens]{subfig} % subfigureを参照時に図1 (a)にする [130821]
+\renewcommand{\thesubfigure}{(\alph{subfigure})} 
+\renewcommand{\thesubtable}{(\alph{table})} 
+
+
+%%% Reference [130420]
+% \usepackage{filecontents}% \documentclassの前にbib等のファイル内容をかける
+\def\harvarditem{hoge}
+%% 文献を引用していないと登場せず\renewcommandでエラーが出るため適当に定義
+\renewcommand\harvarditem[4][]{\bibitem[#1(#3)#2]{#4}}
+
+% \def\harvarditem#1#2#3#4{[]{\bibitem[#2(#3)]{#4}}}
+%% jeconなどでbblに出力する書式を変更して\bibentryで使えるようにする
+%\usepackage{bibentry}% \bibentry{<bibtex key>}で書誌情報を本文に挿入
+%   \nobibliography*% これを書かないとbibentryが有効にならない?
+%% \bibentryを使うとhyperrefのbackrefでエラーが出るのでbackrefはオフにしておくこと
+
+% \setcitestyle{%: natbibの引用スタイルの指定 [130420]
+%% 1: 引用モード: authoryear, number, super
+%% 2: ブレース: round, squareかopen=文字,close=文字
+%% 3: 引用間: semicolon, comma, citesep=文字
+%% 4: 著者と年の間: aysep=文字
+%% 5: 共通の著者の年の間（一度の複数の文献を引用するときの間）: yysep=文字
+%% 6: 後の文字の前の文字: notesep=文字
+
+% \setcitestyle{authoryear,round,comma,aysep={;},yysep={,},notesep={,}}% default
+% \setcitestyle{super,open=,close=)}% 上付の1)形式
+%%%
+
+\def\refname{参考文献} % articleでの文献リスト標題を指定 [130505]
+\def\bibname{参考図書} % report, bookでの文献リスト標題を指定
+
+% \hyphenation{len-gth yama-guchi}% ハイフネーションの指定 [130420]
+
+
+%%% Decoration
+\usepackage{ascmac}% keytop boxnote, shadebox, screen, itembox [130209]
+%% \keytop{ }: キーボード上の文字を示すときに便利。\return, \Returnなども便利。
+%% shadebox環境:  影付きの箱で囲う
+%% screen環境: \ovalのように四隅が円い囲み
+%% \beｇin{itembox}[lcr]{見出し} \end{}: タイトル付screen環境。塗りつぶしは不可
+%% boxnote環境: 破ったメモ用紙な囲い
+
+%%% Page layout
+% \usepackage{indentfirst}%欧文クラスでセクションの次の行を字下げ [121230]
+% \setlength{\bibhang}{0pt}%natbib使用時の参考文献のインデントを設定 [121231]
+
+% \usepackage{lscape}% landscape環境で用紙の向きを変更[130217]
+\usepackage{pdflscape}% landscape環境で用紙向き変更。pdfの表示向きを自動調整 [130503]
+% \usepackage{portland}% \landscape, \portraitで向き変更。landscape、portrait環境もありlscapeと競合するので注意。 [130503]
+
+
+\usepackage{multicol}%[130207]
+% \begin{multicols*}{n} \end{multicols*}で囲っている間n段組
+
+\setlength{\columnsep}{1em} % 段組みの間の余白 [130508]
+\setlength{\columnseprule}{0.5pt} %% 段組みの間の千の太さ
+
+% \onecolumn, \twocolumnで一段と二段は切り替えられる。twoclumn環境でもOK
+% multicolを読み込むと[Text Layout]>[Two-column document]にチェックを入れるとタイトルから2段組になるので注意。[130226]
+
+% \usepackage{wallpaper} % 背景に画像を設定[121209]http://dokoka.org/
+%http://texdoc.net/texmf-dist/doc/latex/wallpaper/wallpapermanual.pdf
+%http://www.biwako.shiga-u.ac.jp/sensei/kumazawa/tex/wallpaper.html
+
+\usepackage{framed}%framed, shaded, snugshade環境自動改ページ箱[130209]
+% \definecolor{shadecolor}{gray}{0.80} %shaded, snugshadedの色を指定
+\definecolor{shadecolor}{rgb}{0.8,1,0.8}
+ \usepackage{niceframe}% niceframe, curlyframe, artdecoframe box [130210]
+
+% 自動改行可能なniceframeの環境 [130222]
+ \newenvironment{longniceframe}{%
+ \def\FrameCommand{\fboxsep=\FrameSep \niceframe}%
+   \MakeFramed {\FrameRestore}}{\endMakeFramed}
+\newenvironment{longcurlyframe}{%
+  \def\FrameCommand{\fboxsep=\FrameSep \curlyframe}%
+  \MakeFramed {\FrameRestore}}{\endMakeFramed}
+\newenvironment{longartdecoframe}{%
+  \def\FrameCommand{\fboxsep=\FrameSep \artdecoframe}%
+  \MakeFramed {\FrameRestore}}{\endMakeFramed}
+
+%% bar chart in table [131005] provide \barchart{number} command
+\newlength{\basis}\setlength{\basis}{10cm} \newlength{\barlength}
+\newcommand*{\barchart}[1]{%
+  \setlength{\barlength}{0.01\basis}\setlength{\barlength}{#1\barlength}%
+  \textcolor{black!40}{\rule{\barlength}{1.5ex}} #1}
+
+\usepackage{tcolorbox} % [131007]
+\tcbuselibrary{breakable,listings,skins}
+\tcbset{%
+  noparskip,
+  colback=gray!5, %background color of the box
+  colframe=gray!30, %color of frame and title background
+  coltext=black, %color of body text
+  coltitle=black, %color of title text 
+  fonttitle=\sffamily\bfseries,
+  left=0.5em, right=0.5em,
+  alert/.style={coltitle=white, colframe=red!75!black, colback=red!5!white},
+  example/.style={coltitle=white, colframe=green!75!black, colback=green!5!white},
+  block/.style={coltitle=white, colframe=blue!75!black, colback=blue!5!white},
+}
+%% tcolorbox option: sidebyside
+
+\tcbset{top=0.2em, bottom=0.2em,middle=1mm}
+%% tcblisting
+\tcbset{listing inputencoding=utf8, listing options={
+  backgroundcolor={},
+  frame=none, framerule=0pt, rulesep=0pt, framesep=0em,
+  framextopmargin=0pt, framexbottommargin=0pt,
+  belowskip=0em, aboveskip=0em,}
+}
+
+%% tcblisting option
+% listing only, listing side text, listing outside text
+
+\usepackage{smartdiagram} % [131009]
+ \usesmartdiagramlibrary{additions} % [20131123]
+\smartdiagramset{uniform arrow color=true, arrow color=black!20, arrow line width=0.5em,  arrow tip=triangle 90,
+  module minimum height=2em, module y sep=1.5, text width=0.5\columnwidth, font=\small\sffamily, border color=none,
+  back arrow disabled=true,
+  descriptive items y sep=2,
+% description title width=0.09\columnwidth, %minimum
+  description title text width=0.1\columnwidth, description text width=0.8\columnwidth,
+% description width=0.1\columnwidth,
+  description title font=\normalsize\sffamily\bfseries, description font=\small\sffamily,
+  bubble center node font=\Large\sffamily\bfseries, bubble node font=\sffamily,
+    bubble center node size=9em, bubble node size=6em,
+    distance center/other bubbles=1.8em, 
+  additions={  %additional item shape=,
+    additional item border color=black, %additional item fill color=black,
+    additional item text width=6em, %additional item width=5em,
+    additional item height=2em, additional item font=\sffamily, additional item offset=2em,
+    additional arrow tip=triangle 60, additional arrow line width=0.2em, additional arrow color=black!20,
+    additional connections disabled=true},
+}
+  %% \smartdiagramadd[<diagram option>]{<item>}{<addition>}
+  % <addition>: right|left|above|below|[above|below]|[right|left] of [additional-] module<n>/<contents>
+  % sample: \smartdiagram[flow diagram]{hoge,moge}{right of module1/1, right of additional-module1/2}
+
+  %% \smartdiagramconnect{<arrow tip>}{<from>/<to>}: draw arrow
+  % sample: \smartdiagramconnect{}{additional-module1/module2}
+
+%% \usepackage{tctoarulogo}                % とあるロゴの拡張機能(パッケージ) [20131123]
+  % \toarulogo[green]とある命令の展開制御{エクスパンドアフター}
+
+%% LyX command [131017]
+\providecommand{\LyX}{L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+
+
+%%% Output pdf
+%% \printtimeでコンパイル時刻を表示[121123]
+% \newcommand*{\printtime}{\two@digits\hour:\two@digits\minute}
+%/todaydで/、/tocayeで-で区切って日付を表示 [121230]
+\newcommand{\todayd}{\the\year/{\ifnum \month < 10 0\the\month \else \the\month \fi}/{\ifnum \day < 10 0\the\day \else \the\day \fi}}
+\newcommand{\todaye}{\the\year-{\ifnum \month < 10 0\the\month \else \the\month \fi}-{\ifnum \day < 10 0\the\day \else \the\day \fi}}
+% \newcommand{\todaye}{\the\year--\the\month--\the\day}
+
+ \usepackage{pxjahyper}% pdf文書情報で日本語を使うため使用 [121118]
+
+\usepackage{url} % for hyphenation in \url{ } [20131207]
+%hyperrefのマニュアル http://www.tug.org/applications/hyperref/manual.html [121124]
+\hypersetup{%	%hyperrefのオプションを指定[121123]
+% bookmarks=true,	%しおりができる。標準：true
+% bookmarksnumbered=true,	%しおりに番号が付く。標準：false
+% bookmarksopen=false,	%しおりを開いておく。標準：false
+% bookmarksopenlevel={},	%開くしおりのレベル。標準：\maxdimen
+% breaklinks=false,	%リンクの改行を許可。標準：false
+ hyperfigures=false,	%図をハイパーリンクにする。標準：false
+ hyperindex=true,	%インデックスにハイパーリンクを設定。標準：true
+% colorlinks=true,	%リンクが色文字に，falseだと枠。標準：false
+ citecolor=green,	%文献引用の色。標準：green
+ filecolor=cyan,		%ファイルリンクの色。標準：cyan
+ linkcolor=blue,		%リンクの色。標準：red
+ menucolor=red,	%メニューリンクの色。標準：red
+ pagecolor=red,		%ページリンクの色。標準：red
+ urlcolor=blue,		%ハイパーリンクの色。colorlinks=trure時。標準：magenta
+% pdftitle={},%PDF Title欄
+ pdfauthor={SENOO Ken <senoo.ken.28c@st.kyoto-u.ac.jp>},	%PDF Author欄
+ pdfsubject={last typeset: \todaye} % \ \printtime},	%PDF Subject欄
+% pdfkeywords={LyX;},	%PDF Keywords欄
+% pdfcreator={},	%PDF Creator欄。標準：LaTeX with hyperref package
+% pdfproducer={},		%PDF Producer欄。標準：空
+% pdfview={},		%各リンクに標準のPDF'view'を設定。標準：XYZ
+% pdfstartpage=1,	%PDFを開いたときの開始ページ。標準：1
+% pdfstartview={},	%PDFの開始ビュー。標準：/Fit
+% pdfremotestartview={},	%遠隔PDFファイルの開始ページビューを設定。標準：Fit
+% pdfcenterwindow=false,	%スクリーンの中心に文書窓を配置。標準：false
+% pdffitwindow=false,	%文書窓を文書サイズにフィットさせる。標準：false
+% pdfpagemode={},	%PDF画面の標準モードを設定。UseNone, UseThumbs, UseOutlines, FullScreen, UseOC, UseAttachmentのどれか。標準：空。bookmarksが設定されていたらUseOutlinesが使われる。
+% pdfpagelayout={},	%PDFページレイアウトを設定。標準：空
+% pdfpagetransition={},	%PDFページの遷移スタイルを設定
+ setpagesize=false,	%特殊なドライバコマンドでページサイズ設定。標準：true
+% unicode,
+}
+
+
+%% list 環境での縦方向空白の除去(\parsep, \itemsep)及び修正(\topsep) 
+\def\@listI{\leftmargin\leftmargini % 箇条書きのレベル1を設定
+ \topsep 0pt \parsep 0pt \itemsep 0pt}
+\def\@listii{\leftmargin\leftmarginii % 箇条書きのレベル2を設定
+ \labelwidth\leftmarginii\advance\labelwidth-\labelsep
+ \topsep 0pt \parsep 0pt \itemsep 0pt}
+\def\@listiii{\leftmargin\leftmarginiii % 箇条書きのレベル3を設定
+ \labelwidth\leftmarginiii\advance\labelwidth-\labelsep
+ \partopsep 0pt \topsep 0pt  \parsep 0pt \itemsep 0pt}
+\def\@listiv{\leftmargin\leftmarginiv % 箇条書きのレベル4を設定
+ \labelwidth\leftmarginiv\advance\labelwidth-\labelsep
+ \partopsep 0pt \topsep 0pt  \parsep 0pt \itemsep 0pt}
+\def\@listv{\leftmargin\leftmarginv % 箇条書きのレベル5を設定
+ \labelwidth\leftmarginv\advance\labelwidth-\labelsep
+ \partopsep 0pt \topsep 0pt  \parsep 0pt \itemsep 0pt}
+
+%%% enumerate環境でラベルの書式を設定 [130714]
+% \def\theenumii{\arabic{enumii}}  \theenum?で数字部分の書式を設定
+%% \arabic, \roman, \Roman, \alph, \Alph, \fnsymbol, \Kanji, \カタカナ, \ひらがな, \イロハ, \いろは, \甲乙, \十二支, \marucnt, \nagamarucnt
+%% emathパッケージが必要
+\def\labelenumii{(\theenumii)} % （a）を(a)に
+
+\setlength{\parskip}{0pt}% 段落間の余白の設定 [130505]
+
+%% emathEyのedaenumerateとyokoenumerateの前後の余白を使用時に修正 [130731]
+\ifx \undefined\preedaenumskip  \else 
+\preedaenumskip=-1em \postedaenumskip=0.3em
+%\setlength{\pre@edasep}{0em}  % インデントを指定
+%\setlength{\post@edasep}{0em}
+ \fi
+
+%%% 目次の項目の設定 [130221]
+% Beamerを使うときは見出しの設定がかぶっておかしくなるのでオフにする。
+%% a pdf-bookmark for the TOC is added [130224]
+\makeatletter
+\@ifclassloaded{beamer}{}{
+ \usepackage{fancyhdr} % beamer以外ではカスタムヘッダー [130913]
+ \pagestyle{fancy}
+%% \usepackage{mytoc}
+  %%% 目次の見出しの書式設定 Beamerはsubsubsectionないので必ずコメントアウト
+  % \renewcommand{\l@sectionなど}{\@dottedtocline{レベル}{字下げ}{ラベル幅}}
+  %\renewcommand{\l@chapter}{\@dottedtocline{0}{0zw}{9ex}}
+
+  %%% 目次の見出しの書式設定 Beamerはsubsubsectionないので必ずコメントアウト
+  % \renewcommand{\l@sectionなど}{\@dottedtocline{レベル}{字下げ}{ラベル幅}}
+  %\renewcommand{\l@chapter}{\@dottedtocline{0}{0zw}{9ex}}
+
+  %%% Setting of section in toc chapterのラベル幅と合わせるとスッキリする
+  %\renewcommand{\l@section}{\sffamily\@dottedtocline{1}{1.5em}{2.5em}}
+  %%\renewcommand{\l@subsection}{\@dottedtocline{2}{2.35em}{3.35em}}
+  %\renewcommand{\l@subsection}{\@dottedtocline{2}{2.34em}{3.35em}}
+  %\renewcommand{\l@subsubsection}{\@dottedtocline{3}{3.2em}{4.2em}}
+  %\renewcommand{\l@paragraph}{\@dottedtocline{4}{4.05em}{5.05em}}
+  
+  \usepackage[subfigure,titles]{tocloft} % [131022]
+    \setlength{\cftsecindent}{1.5em}
+    \setlength{\cftsubsecindent}{2.34em} % 2.25 *2, ex = 0.42 em (arial) 0.375 (times)
+    \setlength{\cftsubsubsecindent}{3.18em} % 3
+    \setlength{\cftparaindent}{4.02em} % 3.75
+    \setlength{\cftsubparaindent}{4.86em} % 4.5
+    %\setlength{\cftchapindent}{1.5em}
+   
+    \ifx \undefined\cftchapnumwidth \newlength{\cftchapnumwidth}  \else \fi
+    \setlength{\cftchapnumwidth}{4em}
+    \setlength{\cftsecnumwidth}{2.5em}
+    \setlength{\cftsubsecnumwidth}{3.34em} % 3.25
+    \setlength{\cftsubsubsecnumwidth}{4.18em} % 4
+    \setlength{\cftparanumwidth}{5.02em} % 4.75
+    \setlength{\cftsubparanumwidth}{5.86em} %5.5
+    %\def\cftchappresnum{第}
+    %\def\cftchapaftersnum{章}
+     
+    %\def\mytocpagefont{\sffamily}
+    \def\mytocpagefont{\sffamily}
+  
+    \def\cftpartfont{\bfseries\mytocpagefont}
+    \def\cftchapfont{\bfseries\mytocpagefont}
+    \def\cftsecfont{\mytocpagefont}
+    \def\cftsubsecfont{\mytocpagefont}
+    \def\cftsubsubsecfont{\mytocpagefont}
+    \def\cftparafont{\mytocpagefont}
+    \def\cftsubparafont{\mytocpagefont}
+  
+    \def\cftpartpagefont{\bfseries\mytocpagefont}
+    \def\cftchappagefont{\bfseries\mytocpagefont}
+    \def\cftsecpagefont{\mytocpagefont}
+    \def\cftsubsecpagefont{\mytocpagefont}
+    \def\cftsubsubsecpagefont{\mytocpagefont}
+    \def\cftparapagefont{\mytocpagefont}
+    \def\cftsubparapagefont{\mytocpagefont}
+  
+    \def\cftfigpagefont{\mytocpagefont}
+    \def\cftsubfigpagefont{\mytocpagefont}
+    \def\cfttabpagefont{\mytocpagefont}
+    \def\cftsubtabpagefont{\mytocpagefont}
+  
+  %%% Format of chapter or section or paragraph
+  %% Setting of part
+  \def\@part[#1]#2{%
+    \ifnum \c@secnumdepth >-2\relax
+      \refstepcounter{part}%
+      \addcontentsline{toc}{part}{%
+         \prepartname\thepart\postpartname\hspace{1em}#1}%
+    \else
+      \addcontentsline{toc}{part}{#1}%
+    \fi
+    \markboth{}{}%
+    {\raggedright
+       \Huge\bfseries\sffamily\prepartname\thepart\postpartname\hskip1em
+     \Huge\bfseries#2\par}%
+     \@endpart}
+  
+  \def\@endpart{%\vfil
+     \if@twoside\null\thispagestyle{empty}\fi
+     \if@tempswa\twocolumn\fi}
+  
+  %\def\@endpart{\vfil\newpage
+  %   \if@twoside\null\thispagestyle{empty}\newpage\fi
+  %   \if@tempswa\twocolumn\fi}
+  
+  \def\@spart#1{{%
+    \raggedright
+    \interlinepenalty\@M\reset@font
+    \Huge\bfseries#1\par}%
+    \@endpart}
+  
+  %% Setting of chapter
+  \def\@makechapterhead#1{%
+  \vspace{0pt} % 見出しの上の空白
+  {\parindent\z@
+  \raggedright
+  \reset@font\huge\bfseries\sffamily % フォントとサイズを指定
+  \leavevmode
+  \ifnum \c@secnumdepth >\m@ne
+  \setlength\@tempdima{\linewidth}%
+  \hbox{\@chapapp\thechapter\@chappos\hskip1em} % ここで前後の文字を指定
+  %\setbox\z@\hbox{\@chapapp\thechapter\@chappos\hskip1zw} % ここで前後の文字を指定
+  \addtolength\@tempdima{-\wd\z@}%
+  \unhbox\z@\nobreak
+  \vtop{\hsize\@tempdima#1}%
+  \else#1\relax
+  \fi}\nobreak\vskip1em} % 見出しの下の空白
+  
+  % *付の小見出しの書式
+  %\if0
+   %% Setting of chapter
+  \def\@makeschapterhead#1{%
+  \vspace*{0pt} % 見出しの上の空白
+  % \raggedright
+  \noindent {\huge\bf\textsf #1}% フォントとサイズを指定
+   \nobreak\vskip1em} % 見出しの下の空白
+  %\fi
+      
+  %% 節の設定
+  % \def\section{\@startsection {section, subsection, subsubsectionのどれか}{レベル}{見出しの字下げ}{見出しの前の行の空白}{見出しの後の行の空白}{フォントの書式}}
+  
+  % セクションの設定。フォントを\Largeの太明朝に，直前に一行の空白変更
+  %\def\section{\@startsection {section}{1}{\z@}{1em}{1sp}{\raggedright\LARGE\bf\textmc}}
+  \def\section{\@startsection {section}{1}{\z@}{1em}{1sp}{\raggedright\LARGE\bfseries\textsf}}
+  % サブセクションの設定。フォントを\normalsizeの太明朝に変更，後の空行除去
+  \def\subsection{\@startsection {subsection}{2}{0em}{1em}{1sp}{\raggedright\Large\bf\textsf}}
+  % サブサブセクションの設定。%フォント\norrmalsizeの太明朝に変更，前後の空行除去
+  \def\subsubsection{\@startsection {subsubsection}{3}{0em}{1em}{1sp}{\raggedright\large\textsf}}
+  
+  % subsubsectionを(1)に変更121224
+  % \renewcommand{\thesubsubsection}{(\arabic{subsubsection})}
+  %% 節の設定終わり
+  
+  % 段落の設定 [130328]
+  \def\paragraph{\@startsection {paragraph}{4}{0em}{1em}{0em}{\raggedright\normalsize\textsf}}
+  
+  
+  %%% ページ番号の書式の設定 [130525]
+  %% ページ番号の書式の変更 http://oku.edu.mie-u.ac.jp/~okumura/texfaq/qa/5179.html
+  \def\ps@myplain{\let\@mkboth\@gobbletwo% 新しいページスタイル
+    \let\ps@jpl@in\ps@plain
+    \let\@oddhead\@empty
+    \def\@oddfoot{\reset@font\hfil-- \thepage\ --\hfil}%
+    \let\@evenhead\@empty
+    \let\@evenfoot\@oddfoot}
+  %\pagestyle{myplain} % ページ番号を-1-という形式に変更
+  
+  %% 目次ではローマ数字になるように\tableofcontentsを再定義
+  \let\oldtoc\tableofcontents
+  \def\tableofcontents{
+  %\newpage
+  \cfoot{--\ \thepage\ --}
+  \pagenumbering{roman}%%
+  \thispagestyle{myplain}
+  %\thispagestyle{empty}
+  \oldtoc%%			% 目次を生成
+  \newpage%%
+  \pagenumbering{arabic}%%
+  \cfoot{--\ \thepage/{\hypersetup{linkcolor = black}\pageref{LastPage}}\ --} \rfoot{\todaye\hspace{1em}\@author}
+  }
+  
+  %% 章の開始ページでは別のページスタイルが使われるので\chapterを再定義
+  \def\chapter{%
+   \cleardoublepage
+   %\thispagestyle{myplain}
+   \thispagestyle{plain}
+   \global\@topnum\z@
+   \@afterindenttrue \secdef\@chapter\@schapter}
+  
+  %% custom title only jreport or jsbook [130805]
+  \makeatletter
+  \@ifclassloaded{ujreport}{
+    \def\maketitle{
+      \newpage
+        \vspace*{\stretch{0.5}}
+      \rule{\linewidth}{1mm}
+      \begin{flushright}
+      \let\footnote\thanks
+  %    \HUGE not available 
+      \Huge \bfseries \textsf \@title
+      \end{flushright}
+  
+      \rule{\linewidth}{1mm}
+      \vspace*{\stretch{1}}
+      \begin{flushright}
+      \LARGE \@author \\
+        \vspace*{\stretch{1}}
+      \Large \@date \\
+        \vspace*{\stretch{1}}
+      \large 京都大学大学院 工学研究科 都市環境工学専攻\\
+        大気・熱環境工学分野\\
+        Email: \texttt{senoo.ken.28c@st.kyoto-u.ac.jp}
+      \end{flushright}
+      \thispagestyle{empty}
+      \newpage
+    }}{}
+  
+  \makeatletter
+  \@ifclassloaded{jsbook}{
+    \def\maketitle{
+      \newpage
+        \vspace*{\stretch{0.5}}
+      \rule{\linewidth}{1mm}
+      \begin{flushright}
+      \let\footnote\thanks
+      {\HUGE \bfseries \textsf\@title}
+      \end{flushright}
+  
+      \rule{\linewidth}{1mm}
+      \vspace*{\stretch{1}}
+      \begin{flushright}
+      \LARGE \@author \\
+        \vspace*{\stretch{1}}
+      \Large \@date \\
+        \vspace*{\stretch{1}}
+      \large 京都大学大学院 工学研究科 都市環境工学専攻\\
+        大気・熱環境工学分野\\
+        Email: \texttt{senoo.ken.28c@st.kyoto-u.ac.jp}
+      \end{flushright}
+      \thispagestyle{empty}
+      \newpage
+    }}{}
+  
+  %% pdf-bookmark for title [130805]
+  %\let\mytitle\maketitle
+  %\renewcommand\maketitle{
+  %	 \pdfbookmark[1]{タイトル} {}\mytitle}
+  
+  %% a pdf-bookmark for the TOC is added [130224]
+  \let\myTOC\tableofcontents
+  \renewcommand\tableofcontents{%
+    \pdfbookmark[1]{\contentsname}{}\myTOC}
+  
+  %%% 柱の設定 [130825]
+  %% 柱に記述する章と節にハイパーリンクを設定
+  \makeatletter
+  \@ifclassloaded{jsbook}{\addtolength{\footskip}{1cm}}{}
+  \@ifclassloaded{jreport}{
+   \renewcommand{\chaptermark}[1]{%
+    \markboth{\protect\hypersetup{linkcolor=black}\protect\hyperlink{\@currentHref}{ 第 \thechapter 章 #1}}{}}
+   \renewcommand{\sectionmark}[1]{%
+    \markright{\protect\hypersetup{linkcolor=black}\protect\hyperlink{\@currentHref}{\thesection \hspace{1ex} #1}}}}{}
+  \@ifclassloaded{jsbook}{
+   \renewcommand{\chaptermark}[1]{%
+    \markboth{\protect\hypersetup{linkcolor=black}\protect\hyperlink{\@currentHref}{ 第 \thechapter 章 #1}}{}}
+   \renewcommand{\sectionmark}[1]{%
+   	 \markright{\protect\hypersetup{linkcolor=black}\protect\hyperlink{\@currentHref}{\thesection \hspace{1ex} #1}}}}{}
+  
+  %% ヘッダーとフッターとその前後の罫線の設定
+  \usepackage{fancyhdr}
+  \usepackage{authoraftertitle} % for header title [130915]
+  \usepackage{lastpage} % for last page number [130921]
+  \lfoot{\MyTitle}
+  \fancyhead[LO, LE]{\leftmark} \fancyhead[RE, RO]{\rightmark}
+  \cfoot{--\ \thepage/{\hypersetup{linkcolor = black}\pageref{LastPage}}\ --} \rfoot{\todaye\hspace{1em}\@author}
+  \def\headrulewidth{0.5pt} \def\footrulewidth{0.5pt}
+  %% \chapter などで使われる plain を再定義
+  \fancypagestyle{plain}{\pagestyle{fancy}}
+  
+% \usepackage{minitoc} % [130518] beamer使用時はオフにすること
+%% \tableofcontentsの前に\dominitocとかくことでminitocファイルを出力
+%% \minitocを\chapterの直後に書くと章ごとの目次を出力
+%% \dominitocをするとタイプセットが重くなるので普段は使わないほうがいい
+}
+
+%%% For Beamer [121231]
+%\usepackage{mybeamer}
+
+%%% 
+%%% Beamerの設定
+\@ifclassloaded{beamer}{
+%\usetheme{Singapore}
+%\usetheme{Copenhagen}
+%\usetheme{AnnArbor}
+% \usetheme{Frankfurt} % good yellow
+ \usetheme{CambridgeUS} % good red
+% \usetheme{Warsaw}
+%	Theme	numbre	Navigation	miniframe
+%	AnnArbor	footer	header	
+%	Antibes	x	header	
+%	Bergen	x	sidebar	
+%	Berkery	x	sidebar	
+%	Berlin	x	header	
+%	Boadilla	footer	x	
+%	boxes	x	x	
+%	CambridgeUS	footer	header	
+%	Copenhagen	x	header	
+%%	Dramstadt?	x	header	
+%	default	x	x	
+%	Dresden	x	header	
+%	Frankfurt	x	header	ok
+%	Goettingen	x	sidebar	
+%	Hannover	x	sidebar	
+%	Ilmenau	x	header	
+%	JuanLesPins	x	header	
+%	Luebeck	x	header	
+%	Madrid	footer	x	
+%	Malmoe	x	header	
+%	Marburg	x	sidebar	
+%	Montpellier	x	header	
+%	PaloAlto	x	sidebar	
+%	Pittsburgh	x	x	
+%	Rochester	x	x	
+%	Singapore	x	header	ok
+%	Szeged	x	header	ok
+%	Warsaw	x	header	
+
+%%% Color
+%% Title color
+ \setbeamercolor{title}{parent=frametitle}
+
+%% Box color
+% \setbeamercolor{block title}{bg=blue}
+% \setbeamercolor{block body}{bg=myblue}
+% \setbeamercolor{block title example}{bg=green}
+% \setbeamercolor{block body example}{bg=mygreen}
+% \setbeamercolor{block title alerted}{bg=red}
+% \setbeamercolor{block body alerted}{bg=myred}
+
+%% complete: crane,
+%  spruce, beaver, wolverine
+%  \usecolortheme{spruce}
+%  \usecolortheme{wolverine}
+
+%% inner color is block color. liliy: clear, orchid: thick,  rose: thin
+ \usecolortheme{orchid}
+% \usecolortheme{rose}
+
+%% Text color
+ \setbeamercolor{alerted text}{fg=red}% 130221
+
+
+%% Navigation bar
+ \useoutertheme[subsection=false]{miniframes}
+% \useoutertheme[right,height=2em]{sidebar}% [130221]
+
+\setbeamertemplate{mini frame in other subsection}[default][100]%小節の丸の濃さ
+\setbeamertemplate{section in head/foot shaded}[default][100]% miniframeの節の色の濃さ
+
+%% Page number
+% footline, sidebar left
+% \addtobeamertemplate{sidebar left}{}{\footnotesize\insertpagenumber/\inserttotalframenumber}
+
+%% add pagenumber to frametitle
+\addtobeamertemplate{frametitle}{}{\vspace{-2\baselineskip}\hfill\tiny\bfseries\insertpagenumber/\insertpresentationendpage}
+
+% \setbeamertemplate{footline}[page number]
+ \setbeamertemplate{footline}[default]
+ \setbeamerfont{footline}{size=\tiny,series=\bfseries}
+
+% \setbeamertemplate{headline}{}
+
+%% Inner theme itemの形を変えたりする
+% \useinnertheme{default}%default, circles, rectangles, rounded-shadow, inmargin  
+
+%%% Item [130610]
+%% item. other option is default(triangle), ball
+ \setbeamertemplate{itemize item}[square]
+ \setbeamertemplate{itemize subitem}[triangle]
+ \setbeamertemplate{itemize subsubitem}[circle]
+%% enum item. default: 1.1, circle, square, ball
+ \setbeamertemplate{enumerate items}[square]
+ \setbeamertemplate{enumerate subitem}[circle]
+ \setbeamertemplate{enumerate subsubitem}[square]
+
+
+%%% Font [130102]
+\def\kanjifamilydefault{\gtdefault} % 日本語をゴシック
+\usefonttheme{professionalfonts} % 数式のフォントをRomanにする
+\setbeamerfont{footnote}{size=\tiny} % footnote
+
+
+%%% Figures and Tables [130116]
+\setbeamertemplate{caption}[numbered]
+\setbeamerfont{caption}{size=\tiny}
+
+
+%%% Marginsize [121231]
+\setbeamersize{
+ text margin left=0.75 em,  % left margin
+ text margin right=0.75 em % , % right margin
+}
+\addtobeamertemplate{frametitle}{}{\vspace{-1ex}}
+
+%% Block margin
+\addtobeamertemplate{block end}{}{\vspace{-0.2em}}
+\addtobeamertemplate{block alerted end}{}{\vspace{-0.2em}}
+\addtobeamertemplate{block example end}{}{\vspace{-0.2em}}
+
+%% Topcolumns env margin
+\ifdefmacro{topcolumns}{
+\let\oldtopcolumns\topcolumns
+\let\endoldtopcolumns\endtopcolumns
+\renewenvironment{topcolumns}{\vspace{-1em}\oldtopcolumns}{\endoldtopcolumns}}{}
+
+%% Centercolumns env margin
+\ifdefmacro{centercolumns}{
+\let\oldcentercolumns\centercolumns
+\let\endoldcentercolumns\endcentercolumns
+\renewenvironment{centercolumns}{\vspace{-1em}\oldcentercolumns}{\endoldcentercolumns}}{}
+
+%% Description width
+\setbeamersize{description width=5em}
+
+%% Other
+\usepackage{bxdpx-beamer} % valid navigation symbol for dvipdfmx [130527]
+\setbeamertemplate{navigation symbols}{}%ナビゲーションシンボルを非表示
+\def\newblock{} % bibtexのエラー防止
+\setbeamertemplate{frametitle continuation}{\insertcontinuationcount} % allowframebreaksオプションでページをまたぐときに付ける数字をアラビア数字に指定
+
+%% TOC
+\if0 %% TOC
+\AtBeginSection[]{
+  \frame<beamer>{
+    \frametitle{Outline}
+% \tableofcontents[currentsection,currentsubsection]
+\tableofcontents[currentsection]
+  }
+}
+\fi
+
+}{}
+%%% Beamerの設定終了
+
+
+%% TikZ
+\usepackage{tikz}% 図形描画のパッケージ [130225]
+\usepackage{pxpgfmark} % remember pictureを可能に。tikzの以降に書くこと [130701]
+\usetikzlibrary{shapes,arrows,positioning,shadows}
+%% 中に文字の書かれた矢印を作成するコマンド
+% \tikz\node[single arrow,fill=gray,font=\ttfamily\bfseries, rotate=270,xshift=-1em]{latex};
+% xshift: 不明
+
+%% 矢印関係 p.442
+% \tikz\node[single arrow,fill=gray,single arrow head extend=3pt,minimum height=3cm ,minimum width=1cm,single arrow tip angle=50,rotate=0]{};
+%% fill: 矢印の塗りつぶしの色
+%% single arrow head extend: 矢印の柄の部分と鏃幅の先端との長さ
+%% minimum height/width: 矢の高さ/幅
+%% single arrow tip angle: 鏃の角度
+%% single arrow head indent: 鏃との連結部を移動。+は鏃側
+
+%% define fancy arrow. \tikzfancyarrow[<option>]{<text>}. ex: \tikzfancyarrow[fill=red!5]{hoge}
+  \tikzset{arrowstyle/.style n args={2}{inner ysep=0.1ex, inner xsep=0.5em, minimum height=2em, draw=#2, fill=black!20, font=\sffamily\bfseries, single arrow, single arrow head extend=0.4em, #1,}}
+  \NewDocumentCommand{\tikzfancyarrow}{O{fill=black!20} O{none}  m}{
+    \tikz[baseline=-0.5ex]\node [arrowstyle={#1}{#2}] {#3 \mathstrut};}
+
+%%% Mathmatics
+\usepackage{fp}
+\usepackage{pgf} % [130330]
+% 使い方。詳細はpgfmanualのPart 6: Mathematical and Object-Oriented Engines
+%% 基本的な使い方
+%%% \pgfmathparse{1+5}というように計算式を書く
+%%% \pgfmathresultで出力
+
+%% 計算結果を変数に保存して利用
+%%% \pgfmathsetmacro{\var}{eq}: \varにeqの計算結果を格納。\varで出力
+
+%% \pgfmathint{ }を使えるようにする
+% \pgfutil@ifundefined{pgfmathint}{%
+%   \def\pgfmathint#1{\expandafter\pgfmathint@#1\relax}%
+%   \def\pgfmathint@#1.#2\relax{\def\pgfmathresult{#1} } }{ }
+
+
+ \usepackage{showexpl} % LTXexample環境 [130526]
+\lstset{explpreset={hsep=1em,language={},varwidth,pos=r,justification=\centering,backgroundcolor=\color{green!20}, rframe={}, framexleftmargin=0em, framexrightmargin=0em,
+% xleftmargin=0.5em,xrightmargin=0.5em, framexleftmargin=0.5em, framexrightmargin=0.5em, % 本当は格子体がxleftmargin=0.5emがexplpresetで効かないからこうしている。
+}}
+% \lst@belowskip=0.2em % LTXexampleではbelowskipの設定でエラーが出るため再定義
+ \lst@belowskip=0em 
+% \def\theindex
+\newcount\c@IndexColumns % beamer使用時に未定義でエラーになる
+ \def\environment % 同上
+\usepackage{doc} % environment環境のため
+
+% \usepackage{makeidx}
+% pgfmanual.sty inputs pgfmanual.code.tex, which in turn inputs
+% pgfmanual.prettyprinter.code.tex and pgfmanual.pdflinks.code.tex.
+% All the files are in the same dir as this file.
+%\usepackage{pgfmanual}
+
+% \usepackage{calc} % NEEDED by pgfmanual-en-macros
+% \input{pgfmanual-en-macros} % this is not general [131006]
+% codeexample環境使用可能。
+%\newcommand{\options}[1][options]{\opt{\oarg{#1}}}
+%\newcommand{\sillymacro}[2][]{
+%   \node [shade, top color = black, bottom color = green, %
+%          text = white, thick, rounded corners, font=\bfseries, #1] {#2};}
+
+\usetikzlibrary{calendar} % \calender
+\usepackage{pgfgantt} % gantchart
+
+%\usepackage[makestderr]{pythontex}
+% \usepackage{pythontex}
+\end_preamble
+\options uplatex,dvipdfmx,table,hyphens
+\use_default_options true
+\begin_modules
+eqs-within-sections
+figs-within-sections
+tabs-within-sections
+logicalmkup
+multicol
+\end_modules
+\maintain_unincluded_children false
+\begin_local_layout
+Format 48
+InsetLayout Flex:Code
+  CopyStyle Flex:Code
+  HTMLStyle
+    code.flex_code{
+      font-family: Consolas, Menlo, 'Liberation Mono', Courier, monospace;
+    }
+  EndHTMLStyle
+End
+
+InsetLayout Flex:URL
+  CopyStyle Flex:URL
+  HTMLStyle
+    span.flex_url{
+      font-family: Consolas, Menlo, 'Liberation Mono', Courier, monospace;
+      color: blue;}
+  EndHTMLStyle
+    Font
+      Family              Typewriter
+      Color               urltext
+    EndFont
+End
+
+InsetLayout Listings
+  CopyStyle Listings
+  HTMLStyle
+    pre.listings {
+      font-size: small;
+      font-family: Consolas, Menlo, 'Liberation Mono', Courier, monospace;
+      background: #ddffdd;
+      text-align: left;    }
+    div.float-listings{
+      border-style: none;    }
+  EndHTMLStyle
+  BgColor               listingsbg
+End
+
+InsetLayout Float
+  CopyStyle Float
+  HTMLStyle
+    div.float{
+      border: none;
+      text-align: center;}
+  EndHTMLStyle
+End
+
+Insetlayout Flex:Lstlisting
+  HTMLAttr		class="lstlisting"
+  HTMLInnerAttr	class="lstlisting_inner"
+  HTMLInnerTag	pre 
+  HTMLStyle
+    div.lstlisting {
+      font-size: small;
+      font-family: Consolas, Menlo, 'Liberation Mono', Courier, monospace;
+      background: #ddffdd;
+      white-space: pre;
+      line-height:0.6;}
+    pre.lstlisting_inner {
+      font-size: small;
+      font-family: Consolas, Menlo, 'Liberation Mono', Courier, monospace;
+      background: #ddffdd;
+      white-space: pre;}
+  EndHTMLStyle
+  BgColor		white
+  Decolation		classic
+  LyXtype		custom
+  LabelString		lstlisting
+  LatexType             Environment
+  LatexName             lstlisting
+  NextNoIndent          1
+  ParbreakIsNewline     1
+  PassThru              1
+  FreeSpacing           1
+  MultiPar		true
+  KeepEmpty		1
+  Argument		1
+    Autoinsert		1
+    LabelString    "Option|n"
+    Tooltip        "Option: caption, label, captionpos[t|b], language, numbers[none|left]"
+    Mandatory		0
+    DefaultArg		""
+    Decoration     conglomerate
+  EndArgument
+  Preamble
+    \usepackage{listings}
+  EndPreamble
+  Font
+    Family              Typewriter
+  EndFont
+End
+
+InsetLayout		Flex:Artdecoframe
+  LyxType			charstyle
+  LabelString		Artdecoframe
+  LatexType		command
+  LatexName		Artdecoframe
+  BgColor			white
+  Font
+    Family		Sans
+  EndFont
+  Preamble
+    \usepackage{niceframe}
+  EndPreamble
+End
+
+InsetLayout		Flex:Curlyframe
+  LyxType			charstyle
+  LabelString		Curlyframe
+  LatexType		command
+  LatexName		curlyframe
+  BgColor			white
+  Font
+    Family		Sans
+  EndFont
+  Preamble
+    \usepackage{niceframe}
+  EndPreamble
+End
+
+InsetLayout		Flex:Niceframe
+  LyxType			charstyle
+  LabelString		Niceframe
+  LatexType		command
+  LatexName		niceframe
+  BgColor			white
+  Font
+    Family		Sans
+  EndFont
+  Preamble
+    \usepackage{niceframe}
+  EndPreamble
+End
+
+InsetLayout		Flex:Kenten
+  LyxType			charstyle
+  LabelString		Kenten
+  LatexType		command
+  LatexName		kenten
+  BgColor			yellow
+  Font
+    Family		Sans
+  EndFont
+  Preamble
+    \usepackage{okumacro}
+  EndPreamble
+End
+
+InsetLayout		Flex:Reflect
+  LyxType			charstyle
+  LabelString		Reflect
+  LatexType		command
+  LatexName		reflectbox
+  BgColor			blue
+  Font
+    Family		Sans
+  EndFont
+End
+
+InsetLayout		Flex:Keytop
+  LyxType			charstyle
+  LabelString		Keytop
+  LatexType		command
+  LatexName		keytop
+  BgColor			white
+  Font
+    Family		Sans
+  EndFont
+End
+
+InsetLayout		Flex:Fbox
+  LyxType			charstyle
+  LabelString		Fbox
+  LatexType		command
+  LatexName		fbox
+  BgColor			white
+  Font
+    Family		Sans
+  EndFont
+End
+
+InsetLayout		Flex:Shadowbox
+  LyxType			charstyle
+  LabelString		Shadowbox
+  LatexType		command
+  LatexName		shadowbox
+  BgColor			white
+  Font
+    Family		Sans
+  EndFont
+  Preamble
+    \usepackage{fancybox}
+  EndPreamble
+End
+
+InsetLayout		Flex:Doublebox
+  LyxType			charstyle
+  LabelString		Doublebox
+  LatexType		command
+  LatexName		doublebox
+  BgColor			white
+  Font
+    Family		Sans
+  EndFont
+  Preamble
+    \usepackage{fancybox}
+  EndPreamble
+End
+
+InsetLayout		Flex:ovalbox
+  LyxType			charstyle
+  LabelString		ovalbox
+  LatexType		command
+  LatexName		ovalbox
+  BgColor			white
+  Font
+    Family		Sans
+  EndFont
+  Preamble
+    \usepackage{fancybox}
+  EndPreamble
+End
+
+InsetLayout		Flex:Ovalbox
+  LyxType			charstyle
+  LabelString		Ovalbox
+  LatexType		command
+  LatexName		Ovalbox
+  BgColor			white
+  Font
+    Family		Sans
+  EndFontk
+  Preamble
+    \usepackage{fancybox}
+  EndPreamble
+End
+
+Insetlayout		Flex:Itembox
+  LyXtype		custom
+  LatexType             	Environment
+  LatexName             	itembox
+  Labelstring		itembox
+  decoration		classic
+  Argument		1
+    LabelString		"Option|n"
+    Tooltip        "header align"
+    DefaultArg		"l"
+    Decoration     conglomerate
+  EndArgument
+  Argument		2
+    LabelString    "Box header"
+    Tooltip        "Enter the box header"
+    Mandatory		1
+    Decoration     conglomerate
+    AutoInsert     1
+  EndArgument
+  Preamble
+    \usepackage{etex}
+    \usepackage{ascmac}
+  EndPreamble
+End
+
+InsetLayout		Flex:Forest
+  LyXtype		custom
+  Labelstring		foerst
+  latextype		environment
+  latexname		forest
+  requires		forest
+  multipar		true
+  decoration		classic
+  freespacing		true
+  nextnoindent		true
+  parbreakisnewline	true
+  passthru		true
+  Preamble
+    \usepackage{forest}
+  EndPreamble
+End
+
+InsetLayout		Flex:Tikzpicture
+  LyXtype		custom
+  Labelstring		tikzpicture
+  latextype		environment
+  latexname		tikzpicture
+  requires		tikzpicture
+  decoration		classic
+  multipar		true
+  freespacing		true
+  nextnoindent		true
+  parbreakisnewline	true
+  passthru		false
+  MultiPar		true
+  KeepEmpty		true
+  Argument		1
+    Autoinsert		1
+    LabelString    "Option|n"
+    Tooltip        "Enter option"
+    Mandatory		0
+    DefaultArg		""
+    Decoration     conglomerate
+  Preamble
+    \usepackage{etex}
+    \usepackage{tikz}
+  EndPreamble
+End
+
+Style Yokoenumerate
+  Category              List
+  Margin                Static
+  LatexType             Item_Environment
+  LatexName             yokoenumerate
+  NextNoIndent          1
+  LeftMargin            MMN
+  LabelSep              xx
+  ParSkip               0.0
+  ItemSep               0.2
+  TopSep                0.7
+  BottomSep             0.7
+  ParSep                0.3
+  Align                 Block
+  AlignPossible         Block, Left
+  LabelType             Enumerate
+  LabelCounter          "enum"
+  HTMLTag               ol
+  HTMLItem              li
+  HTMLLabel             NONE
+  RefPrefix             enu
+  Preamble
+    \usepackage{emathEy}
+  EndPreamble
+End
+
+InsetLayout Flex:Ganttchart
+  LyXtype		custom
+  LatexType        Environment
+  LatexName        ganttchart
+  LabelString      "Ganttchart"
+  KeepEmpty        1
+  NextNoIndent     1
+  ParbreakIsNewline 1
+  FreeSpacing		1
+  Argument		1
+    LabelString    "Option|n"
+    Tooltip        "Enter the frame title here"
+    DefaultArg		"time slot format=big-endian,x unit = 2 em,  title height=1,"
+    PresetArg		"vgrid,hgrid,bar top shift=0, bar height=1, bar/.append style={fill=gray!20}, y unit chart= 1em, y unit title = 2em, canvas/.style={draw=black, fill=yellow!0}, title/.style={fill=blue!0, draw=black}"
+    Decoration     conglomerate
+    Font
+      Color        blue
+    EndFont
+  EndArgument
+  Argument		2
+    LabelString    "Start time slot"
+    Tooltip        "Enter the start time slot"
+    Mandatory		1
+    DefaultArg		1
+    Decoration     conglomerate
+    Font
+      Color        blue
+    EndFont
+    AutoInsert     1
+  EndArgument
+  Argument		3
+    LabelString    "End time slot"
+    Tooltip        "Enter the end time slot"
+    Mandatory		1
+    Decoration     conglomerate
+    Font
+      Color        blue
+    EndFont
+    AutoInsert     1
+  EndArgument
+  Preamble
+    \usepackage{pgfgantt}
+  EndPreamble
+End
+
+InsetLayout		Flex:Smartdiagram
+  LyXtype		custom
+  Labelstring		smartdiagram
+  latextype		command
+  LatexName		smartdiagram
+  requires		smartdiagram
+  multipar		true
+  decoration		classic
+  freespacing		true
+  nextnoindent		true
+  parbreakisnewline	true
+  Argument		1
+    AutoInsert     1
+    LabelString    "Option|n"
+    Tooltip        "Enter the option. [<d>=diagram] circular <d> (:clockwise), flow <d> (:horizontal), ( priority) descriptive <d>, bubble <d>, (connected) constellation <d>, sequence <d>"
+    Mandatory		0
+    DefaultArg		"flow diagram"
+    Decoration     conglomerate
+    Font
+      Color        blue
+    EndFont
+  EndArgument
+  Preamble
+    \usepackage{etex}
+    \usepackage{smartdiagram}
+    \usesmartdiagramlibrary{additions}
+  EndPreamble
+end
+
+InsetLayout		Flex:Smartdiagramconnect
+  LyXtype		custom
+  Labelstring		smartdiagramconnect
+  latextype		command
+  LatexName		smartdiagramconnect
+  requires		smartdiagram
+  decoration		classic
+  multipar		true
+  freespacing		true
+  nextnoindent		true
+  parbreakisnewline	true
+  Argument		1
+    AutoInsert     0
+    LabelString    "Arrow tip|a"
+    Tooltip        "Arrow tip. triangle 90/60/45"
+    Mandatory		1
+    DefaultArg		""
+    Decoration     conglomerate
+    Font
+      Color        blue
+    EndFont
+  EndArgument
+  Preamble
+    \usepackage{etex}
+    \usepackage{smartdiagram}
+    \usesmartdiagramlibrary{additions}
+  EndPreamble
+End
+
+InsetLayout Flex:Tcolorbox
+LyXtype		custom
+LatexType             	Environment
+LatexName             	tcolorbox
+Labelstring		tcolorbox
+decoration		classic
+  Argument		1
+    Tooltip	"Option: \tcblower, \tcbline, breakable, width, sidebyside, lefthand width, righthand width, lefthand ratio, righthand ratio"
+    LabelString    "Option|n"
+    Mandatory		0
+    DefaultArg		""
+    Decoration     conglomerate
+    Font
+      Color        blue
+    EndFont
+    AutoInsert     1
+  EndArgument
+Preamble
+  \usepackage{tcolorbox}
+EndPreamble
+End
+
+InsetLayout Flex:Tcblisting
+LyXtype		custom
+LatexType             	Environment
+LatexName             	tcblisting
+Labelstring		tcblisting
+decoration		classic
+KeepEmpty		1
+ParbreakIsNewline	1
+FreeSpacing		1
+PassThru		1
+BgColor		white
+Font
+  Family              Typewriter
+EndFont
+Argument 1
+    LabelString    "Option|n"
+    Tooltip        "Enter the option. listing only, listing side text, listing outside text"
+    Mandatory		1
+    AutoInsert     1
+    DefaultArg		""
+    Decoration     conglomerate
+%    PresetArg		"listing inputencoding=utf8"
+  EndArgument
+Preamble
+  \usepackage{tcolorbox}
+  \tcbuselibrary{listings}
+EndPreamble
+End
+
+InsetLayout Flex:LTXexample
+LyXtype		custom
+LatexType             	Environment
+LatexName             	LTXexample
+Labelstring		LTXexample
+decoration		classic
+KeepEmpty		1
+ParbreakIsNewline	1
+FreeSpacing		1
+PassThru		1
+BgColor		white
+Font
+  Family              Typewriter
+EndFont
+Argument 1
+    LabelString    "Option|n"
+    Tooltip        "Option. [pos=]: a|b|l|r|o|i, [preset=]: executing TeX command, [rframe], explpreset={}"
+    Mandatory		0
+    AutoInsert     1
+    DefaultArg		""
+    Decoration     conglomerate
+%    PresetArg		"listing inputencoding=utf8"
+  EndArgument
+Preamble
+  \usepackage{showexpl}
+%  \tcbuselibrary{listings}
+% \lstset{explpreset={hsep=1em,language={},varwidth=true,pos=r,backgroundcolor=\color{red!20}}}
+EndPreamble
+End
+
+InsetLayout		Flex:Resizebox
+LyXtype		custom
+Labelstring		resizebox
+latextype		command
+LatexName		resizebox
+decoration		classic
+  Argument		1
+    AutoInsert		1
+    LabelString    "Width"
+    Tooltip        "Width"
+    Mandatory		1
+    DefaultArg		"\columnwidth"
+    Decoration     conglomerate
+    Font
+      Color        blue
+    EndFont
+  EndArgument
+  Argument		2
+    LabelString    "Height"
+    Tooltip        "Height"
+    Mandatory		1
+    DefaultArg		"!"
+    Decoration     conglomerate
+    Font
+      Color        blue
+    EndFont
+  EndArgument
+End
+
+InsetLayout		Flex:Includemovie
+LyXtype		custom
+Labelstring		includemovie
+latextype		command
+LatexName		includemovie
+requires		movie15_dvipdfmx
+decoration		classic
+passthru		true
+  Argument		1
+    LabelString    "Option|n"
+    Tooltip        "Option"
+    Mandatory		0
+    DefaultArg		"poster,text=loading now,controls,autoplay,repeat,autostop"
+    PresetArg       "mouse"
+    Decoration     conglomerate
+    Font
+      Color        blue
+    EndFont
+  EndArgument
+  Argument		2
+    LabelString    "Width"
+    Tooltip        "Width"
+    Mandatory		1
+    DefaultArg		"0.5\column"
+    Decoration     conglomerate
+    Font
+      Color        blue
+    EndFont
+    AutoInsert     1
+  EndArgument
+  Argument		3
+    LabelString    "Height"
+    Tooltip        "Height"
+    Mandatory		1
+    DefaultArg		"0.5\column"
+    Decoration     conglomerate
+    Font
+      Color        blue
+    EndFont
+  EndArgument
+preamble
+    \usepackage{movie15_dvipdfmx}
+endpreamble
+end
+
+Style Dummy
+Category              MainText
+Margin                Static
+LatexType             Environment
+LatexName             dummy
+NextNoIndent          1
+LeftMargin            MMM
+RightMargin           MMM
+TopSep                0.5
+BottomSep             0.5
+Align                 Left
+AlignPossible         Block, Left, Right, Center
+LabelType             No_Label
+FreeSpacing           1
+Preamble
+  \newenvironment{dummy}{
+    \par\begin{list}{}{
+      \setlength{\listparindent}{0pt}% needed for AMS classes
+      \raggedright
+      \setlength{\itemsep}{0pt}
+      \setlength{\parsep}{0pt}}	
+    \item[]}
+  {\end{list}}
+EndPreamble
+Font
+  Family              Typewriter
+EndFont
+End
+
+InsetLayout		Flex:Tikzfancyarrow
+LyXtype		custom
+Labelstring		tikzfancyarrow
+latextype		command
+LatexName		tikzfancyarrow
+requires		tikzpicture
+decoration		classic
+#passthru		true
+  Argument		1
+    AutoInsert		1
+    LabelString    "Option|n"
+    Tooltip        "Option. [fill], [double arrow], [minimum height]: arrow base length, [minimum width]: arrow head length, [rotate]: degree of whole rotation, [shape border rotate]: degree of only arrow rotation, [text width]"
+    Mandatory		0
+    Decoration     conglomerate
+    Font
+      Color        blue
+    EndFont
+  EndArgument
+Preamble
+  \usepackage{etex}
+  \usepackage{tikz}
+%  \usetikzlibrary{shapes.arrows}
+%  \tikzset{arrowstyle/.style n args={2}{inner ysep=0.1ex, inner xsep=0.5em, minimum height=2em, draw=#2, fill=black!20, single arrow, single arrow head extend=0.4em, #1,}}
+%  \NewDocumentCommand{\tikzfancyarrow}{O{fill=black!20} O{none}  m}{
+%    \tikz[baseline=-0.5ex]\node [arrowstyle={#1}{#2}] {#3 \mathstrut};}
+EndPreamble
+End
+\end_local_layout
+\language japanese
+\language_package default
+\inputencoding utf8-platex
+\fontencoding global
+\font_roman utopia
+\font_sans cmbr
+\font_typewriter txtt
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 85
+\graphics default
+\default_output_format default
+\output_sync 1
+\output_sync_macro "\synctex=1 \usepackage{etex}"
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 3
+\pdf_breaklinks true
+\pdf_pdfborder true
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\pdf_quoted_options "pdfencoding=pdfdoc"
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style matsuoka
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 4
+\tocdepth 4
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language swedish
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\listings_params "aboveskip={0.2em},backgroundcolor={\color[rgb]{0.8,1,0.8}},basicstyle={\ttfamily\footnotesize},breakindent=0pt,breaklines=true,commentstyle={\itshape \color[gray]{0.5}},escapechar={:@},extendedchars=false,frame=single,frameround=ffff,framerule=0pt,framesep=0em,framexleftmargin={0.5em},framexrightmargin={0.5em},keywordstyle={\bfseries \color[cmyk]{0,1,0,0}},language=sh,lineskip={-0.0em},mathescape=false,morekeywords={vim,cp,setenv.grep,csh,wget,tar,mkdir,mv,unzip},numbers=none,numbersep=1em,numberstyle={\tiny},showspaces=false,showstringspaces=true,stepnumber=1,stringstyle={\color[rgb]{0,0,1}},xleftmargin=3em,xrightmargin={0.5em}"
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,99 @@
+%%%% Xy-pic関連 [130224]
+\usepackage[all]{xy}
+%%基本事項
+% 数式環境C-m or C-Mで\xymatrixでできる箱にコマンドを書く
+% {}は\{で登場するboxに入力
+
+%%% arrow
+% \ar@[color]@{arrow format}@<ずらし>@/lift1/@lift2(out, in)[direction]suffix(^_|)
+% \ar@[color]@{arrow format}(x,y)
+% ex
+%% \ar@[red]@{-->}[r]^a
+%% \ar@[red]@{-->}@<1ex>[r]|-{a}
+
+% colorとarrow format、ずらし、liftの順番は自由で省略可。
+%向きが最後に来ないといけない。
+%% {arrow format}; ex: {-->} {..>}...
+%% [color]: red, cyan, Lavender...
+%% <ずらし>: <1ex>など。+の値は矢印の左側、-は右側にずらす。
+%% lift1: /^{1pc}/: 上に /_{1pc}/: 下に曲げる 
+%% lift2: (出射角,入射角) (dr, lu)など
+
+%% direction: 行列形式の時の向きを指定u: up, d: down, l: left, r: right,。指定しないと鏃だけ表示。
+%% (x,y): 原点からの矢印の向き。単位はmm?
+
+%% suffix: 
+%%% ^: 矢印の右に配置, _: 矢印の左に配置。複数の語は {}で囲う。ex: \ar[r]^{a}
+%%% |配置{文字}: 矢印の柄に配置。 ex: \ar[r]|-{text}
+
+%%%% 柄の配置指定: -: 柄の中央に配置。(0-1): 矢印に根元を0として位置を指定。指定しなければ、鏃を含めた全体の中央に配置。
+%%%% 上付き、下付きの配置指定: \sp, \sb
+%%%%% \ar[r]\sp(0.2){\phi_1}: 上付きで根元から20%に配置
+%%%%% \ar[r]\sb(0.2){\phi_1}: 下付きで根元から20%に配置
+
+%%% 頂点の修正
+% *大きさ類[形][枠1F枠線種類:color][枠2...]{頂点}
+%% ex:
+%% *++[o][F=:green]{A}
+
+%% 大きさ: +/-: 大きく/小さくする。複数回可能。+/-<大きさ>: 枠の大きさを指定。+/-=: 縦横比を等しくする。!: 中央寄せしない。
+%% 
+%% [形]: o: まるで囲う durl: 寄せ
+%% [F枠線]: F, F-:1本。F=: 2本, F*:塗りつぶし, F**: 塗りつぶして枠を付ける。F.: 点線。F--: 破線。F-,: 影付き。F-:<角の丸み>: 丸い四角。.:点線。
+%.o: 丸。e:楕円。^/_\}/): 上/下ふた波/丸括弧。\{/(, \}/):横括弧。
+
+%%% [F:color], [F-:color]: colorの1本の線で囲う
+%%% [F*:color],  colorで塗りつぶす。[F**:color] colorで塗りつぶし、黒線枠で囲う。
+%%%% 枠は指定順に前面から背面に重なる
+%%%% *++[F-:green][F=]{test}のように指定することで、内側と外側の色を変更可能。
+
+% \entrymodifiers={ }で既定の頂点を設定可能。ex: \entrymodifiers={++[o][F=]
+
+%% 長方形による囲い
+% 以下の形式で長方形の左上と右下を指定して囲む。どこに書いてもよい。
+% \save"行1,列1"."行2,列2"*枠\frm{}\restore
+%% ex
+%% \save"1,1"."1,2"*+[F=]\frm{}\restore (1,1)から(1.2)を囲う二重線の長方形。
+%% \save"1,1"."1,2"*+\frm{.}\restore (1,1)から(1.2)を囲う点線の長方形。
+
+% Fか\frmで枠の形式を指定。
+% \frm{}の指定
+%% .: 点線、-: 破線、=: 二重線。o: 丸。e:楕円。,:影付き。^/_\}/): 上/下ふた波/丸括弧。\{/(, \}/):横括弧。*塗りつぶし。
+
+% 新しい矢印の鏃 \ar@{-|>}[r] を定義
+\newdir{|>}{!/4.5pt/@{|}*:(1,-.2)@^{>}*:(1,+.2)@_{>}}
+
+%% 行幅と列幅を伸縮するコマンド\xyR{ }、\xyC{ }を定義。{ }内の標準値は2pt。
+%% このコマンドは行列内部の最初の要素の前に置く。
+\newcommand{\xyR}[1]{\xydef@\xymatrixrowsep@{#1}}
+\newcommand{\xyC}[1]{\xydef@\xymatrixcolsep@{#1}}
+
+% Xypicの色定義を追加[130223]
+% \xyoption{color}
+\UseCrayolaColors
+\makeatletter %上のコマンドの後にエラーが出るので@が文字となるようにする。
+
+%% 使用可能な色[130224] Redはredより濃い色。
+% GreenYellow: Yellow: Goldenrod:
+% Dandelion: Apricot: Peach:
+% Melon: YellowOrange: Orange:
+% BurntOrange: Bittersweet: RedOrange:
+% Mahogany: Maroon: BrickRed:
+% Red: OrangeRed: RubineRed:
+% WildStrawberry: Salmon: CarnationPink:
+% Magenta: VioletRed: Rhodamine:
+% Mulberry: RedViolet: Fuchsia:
+% Lavender: Thistle: Orchid:
+% DarkOrchid: Purple: Plum:
+% Violet: RoyalPurple: BlueViolet:
+% Periwinkle: CadetBlue: CornflowerBlue:
+% MidnightBlue: NavyBlue: RoyalBlue:
+% Blue: Cerulean: Cyan:
+% ProcessBlue: SkyBlue: Turquoise:
+% TealBlue: Aquamarine: BlueGreen:
+% Emerald: JungleGreen: SeaGreen:
+% Green: ForestGreen: PineGreen:
+% LimeGreen: YellowGreen: SpringGreen:
+% OliveGreen: RawSienna: Sepia:
+% Brown: Tan: Gray:
+% Black: White: 
