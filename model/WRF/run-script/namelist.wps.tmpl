@@ -1,0 +1,37 @@
+&share
+ wrf_core = 'ARW',
+ max_dom = 2,
+ start_date = '(START_DATE)', '(START_DATE)', '(START_DATE)', '(START_DATE)',
+ end_date   = '(END_DATE)', '(END_DATE)', '(END_DATE)', '(END_DATE)',
+ interval_seconds = 21600
+ io_form_geogrid = 2,
+/
+
+&geogrid
+ parent_id         =   1,   1,   2,
+ parent_grid_ratio =   1,   5,   5,
+ i_parent_start    =   1,  55,  35,
+ j_parent_start    =   1,  35,  28,
+ e_we              =  150,  201,  66,
+ e_sn              =  150,  331,  66,
+ geog_data_res     = '30s', '30s', '30s'
+ dx = 150,
+ dy = 150,
+ map_proj = 'lambert',
+ ref_lat   =  33.00,
+ ref_lon   = 133.00,
+ truelat1  =  20.0,
+ truelat2  =  40.0,
+ stand_lon = 133.0,
+ geog_data_path = '/home/senooken/model/WRF/geog'
+/
+
+&ungrib
+ out_format = 'WPS',
+ prefix = 'FILE',
+/
+
+&metgrid
+ fg_name = 'FILE'
+ io_form_metgrid = 2, 
+/
