@@ -1,0 +1,13 @@
+// (File name: README.adoc)
+// (Author: SENOO, Ken)
+// (Last update: 2015-06-28T14:10+09:00)
+
+= Hello World!
+Ken SENOO
+
+LICENSE: CC0
+
+このリポジトリではいろんなプログラミング言語で"Hello World!"と表示させるプログラムを格納する。
+
+サンプルとしてすぐに実行したいときに役に立てばよい。
+
