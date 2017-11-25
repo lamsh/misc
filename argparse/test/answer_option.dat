@@ -1,0 +1,506 @@
+
+ID:001, arg:-h
+argc:0.
+is_opt_h:true .
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:002, arg:--help
+argc:0.
+is_opt_h:true .
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:003, arg:--hel
+argc:0.
+is_opt_h:true .
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:004, arg:-t t 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1=t.
+
+ID:005, arg:-tt 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1=t.
+
+ID:006, arg:-t '' 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1=.
+
+ID:007, arg:-t ' ' 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1= .
+
+ID:008, arg:-t' ' 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1= .
+
+ID:009, arg:-t ' -t ' 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1= -t .
+
+ID:010, arg:--tag --tag 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1=--tag.
+
+ID:011, arg:--ta '' 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1=.
+
+ID:012, arg:--t ' --tag 1 ' 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1= --tag 1 .
+
+ID:013, arg:--tag ' ' 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1= .
+
+ID:014, arg:--tag= 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1=.
+
+ID:015, arg:--ta=' --tag=--tag= '  1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1= --tag=--tag= .
+
+ID:016, arg:--t=' '  1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1= .
+
+ID:017, arg:--tag=''  1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1=.
+
+ID:018, arg:-ta -tt 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1=a, opt_t_arg2=t.
+
+ID:019, arg:1 --tag=3 --tag 2 2
+argc:2, arg1=1, arg2=2.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1=3, opt_t_arg2=2.
+
+ID:020, arg:-hVtt
+argc:0.
+is_opt_h:true .
+is_opt_V:true .
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1=t.
+
+ID:021, arg:-thV
+argc:0.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1=hV.
+
+ID:022, arg:-t--tag
+argc:0.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1=--tag.
+
+ID:023, arg:-t-t
+argc:0.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1=-t.
+
+ID:024, arg:-a 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:true , opt_a_arg=default.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:025, arg:-a'' 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:true , opt_a_arg=default.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:026, arg:-a' ' 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:true , opt_a_arg= .
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:027, arg:-a-a 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:true , opt_a_arg=-a.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:028, arg:--any 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:true , opt_a_arg=default.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:029, arg:--any= 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:true , opt_a_arg=default.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:030, arg:--any=-any 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:true , opt_a_arg=-any.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:031, arg:-a--any -a 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:true , opt_a_arg=--any.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:032, arg:-a 1 -a--any 2
+argc:2, arg1=1, arg2=2.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:true , opt_a_arg=--any.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:033, arg:-ha
+argc:0.
+is_opt_h:true .
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:true , opt_a_arg=default.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:034, arg:-hatt
+argc:0.
+is_opt_h:true .
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:true , opt_a_arg=tt.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:035, arg:-haa
+argc:0.
+is_opt_h:true .
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:true , opt_a_arg=a.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:036, arg:-20
+argc:0.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:true , opt_n_arg=20.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:037, arg:-n 30
+argc:0.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:true , opt_n_arg=30.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:038, arg:-n31
+argc:0.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:true , opt_n_arg=31.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:039, arg:--number 40
+argc:0.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:true , opt_n_arg=40.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:040, arg:--number=41
+argc:0.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:true , opt_n_arg=41.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:041, arg:-2 -3 -n20 --number=30 --number 5
+argc:0.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:true , opt_n_arg=5.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:042, arg:-h20V10t20
+argc:0.
+is_opt_h:true .
+is_opt_V:true .
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:true , opt_n_arg=10.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:true , opt_t_arg1=20.
+
+ID:043, arg:-h20V10a20
+argc:0.
+is_opt_h:true .
+is_opt_V:true .
+is_opt_u:false.
+is_opt_a:true , opt_a_arg=20.
+is_opt_n:true , opt_n_arg=10.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:044, arg:-unconform 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:true .
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:045, arg:-unconform-arg u 1
+argc:1, arg1=1.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:true , opt_U_arg=u.
+is_opt_p:false, opt_p_arg=.
+is_opt_t:false.
+
+ID:046, arg:--plus=30 +20
+argc:0.
+is_opt_h:false.
+is_opt_V:false.
+is_opt_u:false.
+is_opt_a:false, opt_a_arg=.
+is_opt_n:false, opt_n_arg=.
+is_opt_U:false, opt_U_arg=.
+is_opt_p:true , opt_p_arg=20.
+is_opt_t:false.

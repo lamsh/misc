@@ -1,0 +1,64 @@
+
+ID:001, arg:-z
+argparse.sh: invalid option -- 'z'
+Try 'argparse.sh --help' for more information.
+
+ID:002, arg:--hoge
+argparse.sh: unrecognized option '--hoge'
+Try 'argparse.sh --help' for more information.
+
+ID:003, arg:-t
+argparse.sh: option requires an argument -- 't'
+Try 'argparse.sh --help' for more information.
+
+ID:004, arg:-t''
+argparse.sh: option requires an argument -- 't'
+Try 'argparse.sh --help' for more information.
+
+ID:005, arg:--ta
+argparse.sh: option '--tag' requires an argument
+Try 'argparse.sh --help' for more information.
+
+ID:006, arg:--tag''
+argparse.sh: option '--tag' requires an argument
+Try 'argparse.sh --help' for more information.
+
+ID:007, arg:--taga
+argparse.sh: unrecognized option '--taga'
+Try 'argparse.sh --help' for more information.
+
+ID:008, arg:--anya
+argparse.sh: unrecognized option '--anya'
+Try 'argparse.sh --help' for more information.
+
+ID:009, arg:-n 0
+argparse.sh: invalid number: '0': Numerical result out of range
+
+ID:010, arg:-n a
+argparse.sh: invalid number: 'a'
+
+ID:011, arg:-n -1
+argparse.sh: invalid number: '-1'
+
+ID:012, arg:--1
+argparse.sh: unrecognized option '--1'
+Try 'argparse.sh --help' for more information.
+
+ID:013, arg:--number=$((2<<30))
+argparse.sh: invalid number: '2147483648': Value too large for defined data type
+
+ID:014, arg:-uncon
+argparse.sh: unrecognized option '-uncon'
+Try 'argparse.sh --help' for more information.
+
+ID:015, arg:-unconform-arg
+argparse.sh: option '-unconform-arg' requires an argument
+Try 'argparse.sh --help' for more information.
+
+ID:016, arg:-u
+argparse.sh: invalid option -- 'u'
+Try 'argparse.sh --help' for more information.
+
+ID:017, arg:-un
+argparse.sh: unrecognized option '-un'
+Try 'argparse.sh --help' for more information.
