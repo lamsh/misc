@@ -1,0 +1,11 @@
+////////////////////////////////////////////////////////////////////////////////
+/// \file      background.js
+/// \author    SENOO, Ken
+/// \copyright CC0
+////////////////////////////////////////////////////////////////////////////////
+
+"use strict";
+
+chrome.browserAction.onClicked.addListener(function(tab) {
+  browser.tabs.sendMessage(tab.id, {"url": tab.url, "title": tab.title});
+});
